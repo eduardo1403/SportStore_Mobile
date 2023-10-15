@@ -9,6 +9,8 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import ConfirmarCompra from './app/views/confirmarCompra';
+
 
 const Stack = createNativeStackNavigator();
 
@@ -25,7 +27,10 @@ function InicioScreen(){
 function CarritoScreen() {
   return (
     <Stack.Navigator>
-      <Stack.Screen name='Carrito'component={Carrito}/>
+      <Stack.Screen name='Carrito'component={Carrito} options={{
+        headerShown: false,
+      }}/>
+      <Stack.Screen name='Confirmar compra' component={ConfirmarCompra}/>
     </Stack.Navigator>
   );
 }
@@ -33,7 +38,9 @@ function CarritoScreen() {
 function PerfilScreen() {
   return (
     <Stack.Navigator>
-      <Stack.Screen name='Editar Perfil'component={EditarPerfil}/>
+      <Stack.Screen name='Editar Perfil'component={EditarPerfil} options={{
+        headerShown: false,
+      }}/>
     </Stack.Navigator>
   );
 }
