@@ -43,14 +43,14 @@ const styleCart = StyleSheet.create({
         width: 128,
         height: 35,
         left: 18,
-        top: 710
+        top: 780
     },
     PrecioTotalCompra:{
         position: 'absolute',
         width: 102,
         height: 24,
         left: 163,
-        top: 720,
+        top: 787,
         fontFamily: 'Poppins-Regular',
         fontStyle: 'normal',
         fontSize: 16,
