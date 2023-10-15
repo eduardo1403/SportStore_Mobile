@@ -9,17 +9,17 @@ const data = [
   {
     title: 'Aenean leo',
     body: 'Ut tincidunt tincidunt erat...',
-    imgUrl: require('../img/banner1.png'),
+    imgUrl: require('../img/1.png'),
   },
   {
     title: 'In turpis',
     body: 'Aenean ut eros et nisl sagittis vestibulum...',
-    imgUrl: require('../img/banner1.png'),
+    imgUrl: require('../img/2.png'),
   },
   {
     title: 'Lorem Ipsum',
     body: 'Phasellus ullamcorper ipsum rutrum nunc...',
-    imgUrl: require('../img/banner1.png'),
+    imgUrl: require('../img/3.png'),
   },
 ];
 
