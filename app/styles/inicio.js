@@ -145,6 +145,14 @@ const style = StyleSheet.create({
         lineHeight: 30,
         color: '#000000',
     },
+    ContainerImgBanner:{
+        position: 'absolute',
+        width: 418,
+        height: 350,
+        left: 0,
+        top: 60,
+        overflow:'hidden'
+    },
     ContainerImage:{
         position: 'absolute',
         width: 90,

@@ -2,13 +2,17 @@ import React from 'react';
 import {View, Text, Image, TouchableOpacity, ScrollView} from 'react-native';
 import { style } from '../styles/inicio';
 import { StatusBar } from 'expo-status-bar';
+import CarouselCards from './CarouselCards';
+//<Image source={require('../img/banner1.png')} style={style.ImgBanner}/>
 const Inicio = () => {
     return(
         <View>
             <View style={style.HeaderInicio}></View>
             <Image source={require('../img/logo.png')} style={style.LogoHeader}/>
             <Text style={style.textInicio}>Inicio</Text>
-            <Image source={require('../img/banner1.png')} style={style.ImgBanner}/>
+            <View style={style.ContainerImgBanner}>
+                <CarouselCards />
+            </View>
             <TouchableOpacity onPress={() => navigation.navigate('Producto')}>
                     <View style={style.ContainerImage}>
                         <Image source={require('../img/producto.jpg')} style={style.ImageProduct}/>
