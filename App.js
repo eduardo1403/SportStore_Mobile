@@ -64,6 +64,8 @@ function PerfilScreen() {
       <Stack.Screen name='Cambio de moneda' component={Convertidor}/>
       <Stack.Screen name='Aviso de privacidad' component={Aviso}/>
       <Stack.Screen name='Misión y Visión' component={mision}/>
+      <Stack.Screen name='Dirección' component={Misdirecciones}/>
+      <Stack.Screen name='Editar dirección' component={EdtDiecction}/>
     </Stack.Navigator>
   );
 }

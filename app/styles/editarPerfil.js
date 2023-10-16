@@ -3,84 +3,76 @@ import { StyleSheet } from "react-native";
 
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    paddingHorizontal: 10,
-    marginTop: 24,
+  containerBack: {
+    backgroundColor: '#F8F9FA',
   },
-  inputContainer: {
-    marginTop: 20,
+  HeaderInicio: {
+        position: "absolute",
+        width: 420,
+        height: 60,
+        left: 0,
+        top: 0,
+        backgroundColor: "white",
+    },
+    LogoHeader:{
+      position: 'absolute',
+      width: 99.59,
+      height: 45,
+      left: 170,
+      top: 16,
   },
-  input: {
-    height:35,
-    borderWidth: 0, 
-    borderColor: '#CCCCCC',
-    paddingHorizontal: 10,
-    marginBottom: 10,
-    fontSize: 15,
-    fontFamily: 'Poppins',
-  },
-  inputLine: {
-    height: 2,
-    backgroundColor: '#CCCCCC',
-  },
-  button: {
-    backgroundColor: '#DC3545',
-    paddingVertical: 10,
-    alignItems: 'center',
-    borderRadius: 6,
-  },
-  buttonText: {
-    color: '#FFFFFF',
-    fontSize: 14,
-    fontFamily: 'Poppins',
-  },
-
-  bom: {
-    backgroundColor: '#dcdcdc',
-    paddingVertical: 10,
-    alignItems: 'center',
-    borderRadius: 5,
-    marginBottom: 20,
-   
-  },
-    buttonTex: {
-    color: '#00000',
-    fontSize: 14,
-    fontFamily: 'Poppins',
-  },
-  imagen: {
-    width: 80,
-    height: 20,
-    left: 5,
-  },
-  containerLogo:{
-    alignItems: 'center',
-    width:'100%'
-  },
-  header: {
-    height:0.2,
-  },
-  miPerfil: {
-    fontFamily:'Poppins',
-    marginLeft: 30,
+  textInicio:{
+    position: "absolute",
+    fontFamily: 'Poppins-SemiBold',
+    left:25,
+    top:29,
+    fontSize: 20,
+    color: '#000'
   },
   Icono:{   
-    width: 20,
-    height: 20,
-   marginLeft: 250,
-   marginBottom: 20,
+    position: "absolute",
+  marginLeft: 370,
+  marginTop: 30,
+  },
+  content: {
+    justifyContent:'center',
+    marginLeft:10,
+    marginTop:'20%',
+  },
+  input: {
+    fontSize: 16,
+    width:'85%',
+    fontFamily: 'Poppins-Regular',
+    height: 45,
+    margin:20,
+    borderColor: 'gray',
+    borderBottomWidth: 1
+  },
+  container:{
+    flexDirection:"row",
+    backgroundColor: 'white',
+    justifyContent:'space-between',
+    width: '100%',
+    height: 60,
+    top: 0,
+    marginTop:40,
+    elevation:5,               
 },
-content: {
-  width: 300,
-    height: 50,
-    backgroundColor: '#F8F9FA',
-    shadowColor: 'rgba(0, 0, 0, 0.25)',
-    shadowOffset: { width: 2, height: 9 },
-    shadowRadius: 20,
-    shadowOpacity: 0.5,
-}
+text2:{
+  left:370,
+  fontSize:10,
+  color:'black',
+},
+text:{
+  left:30,
+  top:20,
+  fontSize:16,
+  color:'black',
+  fontFamily:'Poppins-Regular'
+},
+buttonContainer: {
+  marginTop:300,
+  margin: 20,
+},
 });
-
-
   export {styles}
