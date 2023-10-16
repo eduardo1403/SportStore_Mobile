@@ -27,7 +27,6 @@ const EdtDiecction = () => {
           style={styles.input}
           placeholder="Escribe tu municipio"
         />
-        {/* Agrega más inputs según tus necesidades */}
         <Text style={styles.label}>Teléfono</Text>
         <TextInput
           style={styles.input}

@@ -4,10 +4,6 @@ import {styles} from '../styles/misDirecciones'
 
 import { useNavigation } from "@react-navigation/native";
 
-const Misdirecciones = () => {
-  const navigation = useNavigation();
-
-
 
 const Misdirecciones = () => {
 
@@ -26,7 +22,7 @@ const Misdirecciones = () => {
       <View style={styles.addressContainer}>
         
         <Text style={styles.addressText}>
-          Calle independencia 1 Departamentos amarillos en colonia Cantores Huejutla de reyes Hidalgo Mexico 43000 
+          Calle independencia 1 Departamentos amarillos en colonia Cantores Huejutla de Reyes Hidalgo Mexico 43000 
         </Text>
       </View>
 
@@ -45,5 +41,3 @@ const Misdirecciones = () => {
 };
 
 export default Misdirecciones
-
-};
