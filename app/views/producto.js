@@ -2,11 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, FlatList, TouchableOpacity, Image } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
 
-import { styles } from '../styles/producto'; // Importa los estilos desde el archivo "styles.js"
-
-import { styles } from './styles'; // Importa los estilos desde el archivo "styles.js"
-
-
+import { styles } from '../styles/producto'; // Importa los estilos desde el archivo 
 
 const productsData = [
     { id: '1', name: 'Pans Deportivos', price: '$450', description: 'Pans negros Adidas, para caballero', image: require('../img/4.png') },

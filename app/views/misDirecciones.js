@@ -6,15 +6,13 @@ import { useNavigation } from "@react-navigation/native";
 
 
 const Misdirecciones = () => {
-
+  const navigation = useNavigation();
   return (
     <View style={styles.container}> 
 
       <View style={styles.header}>
 
       <Image source={require('../img/izquierda.png')} style={styles.Icono}/>
-
-      <Image source={require('./img/izquierda.png')} style={styles.Icono}/>
 
         <Text style={styles.headerText}>Domicilio</Text>
       </View>
@@ -29,13 +27,10 @@ const Misdirecciones = () => {
 
 
       <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Editar dirección')}>
-
-      <TouchableOpacity style={styles.button}>
-
         <Text style={styles.buttonText}>Editar Direccion</Text>
       </TouchableOpacity>
 
-    </View>
+      </View>
   );
 
 };
