@@ -4,10 +4,6 @@ import {styles} from '../styles/misDirecciones'
 
 import { useNavigation } from "@react-navigation/native";
 
-const Misdirecciones = () => {
-  const navigation = useNavigation();
-
-
 
 const Misdirecciones = () => {
 
@@ -45,5 +41,3 @@ const Misdirecciones = () => {
 };
 
 export default Misdirecciones
-
-};
