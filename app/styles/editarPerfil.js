@@ -56,6 +56,7 @@ const styles = StyleSheet.create({
   },
   containerLogo:{
     alignItems: 'center',
+    width:'100%'
   },
   header: {
     height:0.2,

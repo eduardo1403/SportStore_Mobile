@@ -1,9 +1,10 @@
 import React, {Component} from 'react';
-import {Button, View, Image,TextInput, Text, Pressable, StyleSheet} from 'react-native';
+import {Button, View, Image,TextInput, Text, Pressable, StyleSheet, TouchableOpacity} from 'react-native';
 import {styles} from '../styles/login'
-
+import { useNavigation } from "@react-navigation/native";
 
 const formulario = () =>  {
+  const navigation = useNavigation();
   return (
       <View>
           <View style={styles.containerLogo}>
@@ -15,7 +16,7 @@ const formulario = () =>  {
               <Pressable style={styles.button}>
                 <Text style={styles.textButton}>INICIAR SESIÓN</Text>
               </Pressable>
-              <Pressable style={styles.button2}>
+              <Pressable style={styles.button2} onPress={() => navigation.navigate('Registro')}>
                 <Text style={styles.textButton}>REGISTRARSE</Text>
               </Pressable>
           </View>
@@ -25,12 +26,14 @@ const formulario = () =>  {
           <TextInput style={styles.input}
           placeholder="Contraseña"
           />
-          <View style={styles.buttonContainer}>
-              <Button
-              title="Iniciar sesión"
-              color="#DC3545"
-              />
-          </View>
+          <TouchableOpacity >
+            <View style={styles.buttonContainer}>
+                <Button
+                title="Iniciar sesión"
+                color="#DC3545"
+                />
+            </View>
+          </TouchableOpacity>
       </View>
       
   )

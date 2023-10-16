@@ -16,7 +16,8 @@ export const styles = StyleSheet.create({
     marginBottom: 30,
   },
   headerText: {
-    fontFamily: 'Poppins',
+
+    fontFamily: 'Poppins-SemiBold',
     fontSize: 16,
     lineHeight: 24,
     color: '#000000',
@@ -65,18 +66,24 @@ export const styles = StyleSheet.create({
     resizeMode: 'contain',
   },
   productName: {
-    fontFamily: 'Poppins',
+
+    fontFamily: 'Poppins-SemiBold',
+
     fontSize: 14,
     marginTop: 4,
   },
   productPrice: {
-    fontFamily: 'Poppins',
+
+    fontFamily: 'Poppins-SemiBold',
+
     fontSize: 14,
     color: '#00000',
     marginTop: 4,
   },
   productDescription: {
-    fontFamily: 'Poppins',
+
+    fontFamily: 'Poppins-Regular',
+
     fontSize: 14,
     marginTop: 4,
   },

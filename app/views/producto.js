@@ -1,7 +1,11 @@
 import React, { useState } from 'react';
 import { View, Text, FlatList, TouchableOpacity, Image } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
+
+import { styles } from '../styles/producto'; // Importa los estilos desde el archivo "styles.js"
+
 import { styles } from './styles'; // Importa los estilos desde el archivo "styles.js"
+
 
 
 const productsData = [
@@ -53,6 +57,7 @@ const Productos = () => {
 
   return (
     <View style={styles.container}>
+
      <View style={styles.header}>
         <Image source={require('../img/izquierda.png')} style={styles.Icono}/>
         <Text style={styles.headerText}>Catalogo De Producctos</Text>
@@ -67,6 +72,7 @@ const Productos = () => {
         <FontAwesome name="shopping-cart" size={20} color="#00000" />
         
       </View>
+
       <FlatList
         data={productsData}
         renderItem={renderProduct}
