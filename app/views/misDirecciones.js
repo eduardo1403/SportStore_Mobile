@@ -8,7 +8,7 @@ const Misdirecciones = () => {
     <View style={styles.container}> 
 
       <View style={styles.header}>
-      <Image source={require('./img/izquierda.png')} style={styles.Icono}/>
+      <Image source={require('../img/izquierda.png')} style={styles.Icono}/>
         <Text style={styles.headerText}>Domicilio</Text>
       </View>
 
@@ -27,3 +27,5 @@ const Misdirecciones = () => {
     </View>
   );
 };
+
+export default Misdirecciones

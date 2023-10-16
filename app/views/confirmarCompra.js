@@ -1,17 +1,20 @@
 import React from "react";
-import { View, Text,Image, Button} from "react-native";
+import { View, Text,Image, Button, TouchableOpacity} from "react-native";
 import {styles} from '../styles/confirmarCompra';
-
-
+import { useNavigation } from "@react-navigation/native";
 
 const ConfirmarCompra = () =>  {
+  const navigation = useNavigation();
     return (
       <View>
+        <TouchableOpacity onPress={() => navigation.navigate('Dirección')}>
         <View style={styles.container}>
+          
           <Text style={styles.text}>Dirección de envio</Text>
           <Text style={styles.text2}>Calle independencia 1 Departamentos{'\n'}amarillos en la    colonia Cantores {'\n'}
 Huejutla de reyes Hidalgo Mexico 43000</Text>
         </View>
+        </TouchableOpacity>
         <View style={styles.container2}>
         <Text style={styles.text}>Árticulo</Text>
         <Image source={require('../img/foto.jpg')} style={styles.producto}/>

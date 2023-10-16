@@ -3,8 +3,10 @@ import {View, Text, Image, TouchableOpacity, ScrollView} from 'react-native';
 import { style } from '../styles/inicio';
 import { StatusBar } from 'expo-status-bar';
 import CarouselCards from './CarouselCards';
+import { useNavigation } from "@react-navigation/native";
 //<Image source={require('../img/banner1.png')} style={style.ImgBanner}/>
 const Inicio = () => {
+    const navigation = useNavigation();
     return(
         <View>
             <View style={style.HeaderInicio}></View>

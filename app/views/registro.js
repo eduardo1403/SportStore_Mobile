@@ -1,9 +1,10 @@
 import React, {Component} from 'react';
 import {Button, View, Image,TextInput, Text, Pressable, StyleSheet} from 'react-native';
 import {styles} from '../styles/login'
+import { useNavigation } from "@react-navigation/native";
 
-
-const formulario = () =>  {
+const registro = () =>  {
+  const navigation = useNavigation();
   return (
       <View>
           <View style={styles.containerLogo}>
@@ -12,7 +13,7 @@ const formulario = () =>  {
           <View style={styles.fixToText}>
           </View>
           <View style={styles.fixToText}>
-              <Pressable style={styles.button2}>
+              <Pressable style={styles.button2} onPress={() => navigation.navigate('Sesion')}>
                 <Text style={styles.textButton}>INICIAR SESIÓN</Text>
               </Pressable>
               <Pressable style={styles.button}>
@@ -34,4 +35,4 @@ const formulario = () =>  {
 }
 
 
-export default formulario
+export default registro

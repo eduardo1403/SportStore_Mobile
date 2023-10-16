@@ -10,7 +10,14 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import ConfirmarCompra from './app/views/confirmarCompra';
-
+import Productos from './app/views/producto';
+import ajustes from './app/views/ajustes';
+import formulario from './app/views/login';
+import registro from './app/views/registro';
+import Convertidor from './app/views/cambioMoneda';
+import Aviso from './app/views/avisoPriv';
+import mision from './app/views/MyV';
+import Misdirecciones from './app/views/misDirecciones';
 
 const Stack = createNativeStackNavigator();
 
@@ -20,6 +27,7 @@ function InicioScreen(){
       <Stack.Screen name='Inicio' component={Inicio} options={{
         headerShown: false,
       }}/>
+      <Stack.Screen name='Producto' component={Productos} />
     </Stack.Navigator>
   )
 }
@@ -31,9 +39,12 @@ function CarritoScreen() {
         headerShown: false,
       }}/>
       <Stack.Screen name='Confirmar compra' component={ConfirmarCompra}/>
+      <Stack.Screen name='Dirección' component={Misdirecciones}/>
     </Stack.Navigator>
   );
 }
+
+
 
 function PerfilScreen() {
   return (
@@ -41,6 +52,16 @@ function PerfilScreen() {
       <Stack.Screen name='Editar Perfil'component={EditarPerfil} options={{
         headerShown: false,
       }}/>
+      <Stack.Screen name='Ajustes' component={ajustes} />
+      <Stack.Screen name='Sesion' component={formulario} options={{
+      headerShown: false,
+      }}/>
+      <Stack.Screen name='Registro' component={registro} options={{
+        headerShown: false
+      }}/>
+      <Stack.Screen name='Cambio de moneda' component={Convertidor}/>
+      <Stack.Screen name='Aviso de privacidad' component={Aviso}/>
+      <Stack.Screen name='Misión y Visión' component={mision}/>
     </Stack.Navigator>
   );
 }
@@ -90,6 +111,8 @@ export default function App() {
           ),
         }}/>
       </Tab.Navigator>
+      
     </NavigationContainer>
+    
   );
 }

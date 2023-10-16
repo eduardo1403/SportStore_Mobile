@@ -6,7 +6,6 @@ const EdtDiecction = () => {
   return ( 
     <View style={styles.container}> 
       <View style={styles.header}>
-        <Image source={require('./img/izquierda.png')} style={styles.Icono}/>
         <Text style={styles.headerText}>Editar dirección</Text>
       </View>
       <View style={styles.content}>
