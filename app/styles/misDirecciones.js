@@ -2,55 +2,40 @@ import React from "react";
 import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#F8F9FA',
-    paddingHorizontal: 30,
-    paddingTop: 10,
-  },
-  header: {
-    backgroundColor: '#F8F9FA', 
-    paddingVertical: 40,
-    borderBottomColor: 'rgba(0, 0, 0, 0.15)',
-    borderBottomWidth: 1,
-  },
-  headerText: {
-    position: 'absolute',
-    fontFamily: 'Poppins',
-    fontSize: 20,
-    fontWeight: 'bold',
-    color: '#000000',
-    left: 50,
-  },
-  addressContainer: {
-    backgroundColor: '#F8F9FA',
-    padding: 20,
-    borderColor: 'rgba(0, 0, 0, 0.8)',
-    borderWidth: 1,
-  },
-  addressText: {
-    fontFamily: 'Poppins',
-    fontSize: 16,
-    lineHeight: 24,
-    color: '#7B7474',
-  },
-    button: {
-    backgroundColor: '#DC3545',
-    padding: 10,
-    borderRadius: 10,
-    alignItems: 'center',
-    marginTop: 16,
-  },
-  buttonText: {
-    fontFamily: 'Poppins',
-    color: 'black',
-    fontSize: 15,
-  },
-  Icono:{      
-    position: 'absolute',
-    width: 40,
-    height: 30,
-    left: 10,
+  container2:{
+    flexDirection:"row",
+    backgroundColor: 'white',
+    justifyContent:'space-between',
+    width: '100%',
+    height: 150,
+    top: 0,
+    marginTop:20,
+    elevation:5,               
 },
+container3:{
+  flexDirection:"row",
+       backgroundColor: 'white',
+       justifyContent:'space-between',
+       width: '100%',
+       height:90,
+       top: 0,
+       marginTop:'123%',
+       elevation:30,              
+ },
+ buttonContainer: {
+  marginLeft: 30,
+  marginTop: 25,
+  width:350,
+
+},
+text:{
+  left:20,
+  top:20,
+  fontSize:16,
+  width:"80%",
+  color:'grey',
+  fontFamily:'Poppins-Regular'
+},
+
 });
   export {styles}

@@ -1,46 +1,48 @@
 import React from 'react';
-import { View, Text, Image,TextInput,TouchableOpacity } from 'react-native';
+import { View, Text, Image,TextInput,TouchableOpacity,Button } from 'react-native';
 import {styles} from '../styles/editDirect'
 
 const EdtDiecction = () => {
   return ( 
     <View style={styles.container}> 
-      <View style={styles.header}>
-
-        <Image source={require('../img/izquierda.png')} style={styles.Icono}/>
-
-        <Text style={styles.headerText}>Editar dirección</Text>
-      </View>
       <View style={styles.content}>
-        <Text style={styles.label}>Nombre</Text>
         <TextInput
           style={styles.input}
-          placeholder="Escribe tu nombre"
+          placeholder="Nombre"
         />
-        <Text style={styles.label}>Estado</Text>
         <TextInput
           style={styles.input}
-          placeholder="Escribe tu estado"
+          placeholder="Estado"
         />
-        <Text style={styles.label}>Municipio</Text>
         <TextInput
           style={styles.input}
-          placeholder="Escribe tu municipio"
+          placeholder="Municipio"
         />
-        <Text style={styles.label}>Teléfono</Text>
         <TextInput
           style={styles.input}
-          placeholder="Escribe tu teléfono"
+          placeholder="Colonia"
         />
-        <Text style={styles.label}>Indicaciones adicionales</Text>
         <TextInput
           style={styles.input}
-          placeholder="Escribe tus indicaciones adicionales"
+          placeholder="Calle"
         />
-      </View>
-      <TouchableOpacity style={styles.footerButton}>
-        <Text style={styles.updateButton}>Actualizar dirección</Text>
-      </TouchableOpacity>
+        <TextInput
+          style={styles.input}
+          placeholder="Teléfono"
+        />
+        <TextInput
+          style={styles.input}
+          placeholder="Indicaciones adicionales"
+        />
+        </View>
+        <View style={styles.container3}>
+        <View style={styles.buttonContainer}>
+              <Button
+              title="Actualizar dirección"
+              color="#DC3545"
+              />
+        </View>  
+        </View>
     </View>
   );
 };

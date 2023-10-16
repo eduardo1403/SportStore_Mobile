@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, TouchableOpacity,Image } from 'react-native';
+import { View, Text, TouchableOpacity,Image, Button } from 'react-native';
 import {styles} from '../styles/misDirecciones'
 
 import { useNavigation } from "@react-navigation/native";
@@ -8,27 +8,23 @@ import { useNavigation } from "@react-navigation/native";
 const Misdirecciones = () => {
   const navigation = useNavigation();
   return (
-    <View style={styles.container}> 
-
-      <View style={styles.header}>
-
-      <Image source={require('../img/izquierda.png')} style={styles.Icono}/>
-
-        <Text style={styles.headerText}>Domicilio</Text>
+    <View> 
+      <View>
+      <View style={styles.container2}>
+            <Text style={styles.text}>Calle independencia 1 Departamentos amarillos en colonia Cantores Huejutla de Reyes Hidalgo Mexico 43000</Text>
+        </View>
       </View>
-
-      <View style={styles.addressContainer}>
-        
-        <Text style={styles.addressText}>
-          Calle independencia 1 Departamentos amarillos en colonia Cantores Huejutla de Reyes Hidalgo Mexico 43000 
-        </Text>
-      </View>
-
-
-
-      <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Editar dirección')}>
-        <Text style={styles.buttonText}>Editar Direccion</Text>
-      </TouchableOpacity>
+      <View style={styles.container3}>
+      <TouchableOpacity>
+        <View style={styles.buttonContainer}>
+              <Button
+              title="Editar dirección"
+              color="#DC3545"
+              onPress={() => navigation.navigate('Editar dirección')}
+              />
+          </View>
+        </TouchableOpacity>
+        </View>
 
       </View>
   );
