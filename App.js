@@ -18,6 +18,7 @@ import Convertidor from './app/views/cambioMoneda';
 import Aviso from './app/views/avisoPriv';
 import mision from './app/views/MyV';
 import Misdirecciones from './app/views/misDirecciones';
+import EdtDiecction from './app/views/editDirect';
 
 const Stack = createNativeStackNavigator();
 
@@ -40,6 +41,7 @@ function CarritoScreen() {
       }}/>
       <Stack.Screen name='Confirmar compra' component={ConfirmarCompra}/>
       <Stack.Screen name='Dirección' component={Misdirecciones}/>
+      <Stack.Screen name='Editar dirección' component={EdtDiecction}/>
     </Stack.Navigator>
   );
 }

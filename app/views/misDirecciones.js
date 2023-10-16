@@ -1,9 +1,10 @@
 import React from 'react';
 import { View, Text, TouchableOpacity,Image } from 'react-native';
 import {styles} from '../styles/misDirecciones'
-
+import { useNavigation } from "@react-navigation/native";
 
 const Misdirecciones = () => {
+  const navigation = useNavigation();
   return (
     <View style={styles.container}> 
 
@@ -20,7 +21,7 @@ const Misdirecciones = () => {
       </View>
 
 
-      <TouchableOpacity style={styles.button}>
+      <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Editar dirección')}>
         <Text style={styles.buttonText}>Editar Direccion</Text>
       </TouchableOpacity>
 
