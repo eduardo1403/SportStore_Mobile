@@ -1,27 +1,26 @@
 import React from 'react';
-import { View, Text, StyleSheet, Dimensions, Image } from 'react-native';
+import { View, StyleSheet, Dimensions, Image } from 'react-native';
 import Carousel, { Pagination } from 'react-native-snap-carousel';
 
-const SLIDER_WIDTH = Dimensions.get('window').width + 0;
+const SLIDER_WIDTH = Dimensions.get('window').width;
 const ITEM_WIDTH = Math.round(SLIDER_WIDTH * 0.9);
 
-const data = [
+const originalData = [
   {
-    title: 'Aenean leo',
-    body: 'Ut tincidunt tincidunt erat...',
+    
     imgUrl: require('../img/1.png'),
   },
   {
-    title: 'In turpis',
-    body: 'Aenean ut eros et nisl sagittis vestibulum...',
+    
     imgUrl: require('../img/2.png'),
   },
   {
-    title: 'Lorem Ipsum',
-    body: 'Phasellus ullamcorper ipsum rutrum nunc...',
+    
     imgUrl: require('../img/3.png'),
   },
 ];
+
+const data = [...originalData, ...originalData, ...originalData]; // Duplica los elementos para el efecto infinito
 
 const CarouselCardItem = ({ item, index }) => {
   return (
@@ -33,25 +32,36 @@ const CarouselCardItem = ({ item, index }) => {
 };
 
 const CarouselCards = () => {
-  const [index, setIndex] = React.useState(0);
-  const isCarousel = React.useRef(null);
+  const [index, setIndex] = React.useState(originalData.length); // Iniciar en la posición del primer elemento duplicado
+
+  React.useEffect(() => {
+    const interval = setInterval(() => {
+      let nextIndex = (index + 1) % data.length;
+      setIndex(nextIndex);
+      carouselRef.current.snapToItem(nextIndex);
+    }, 3000); // Cambia cada 3000 milisegundos (3 segundos)
+
+    return () => clearInterval(interval); // Limpia el intervalo al desmontar el componente
+  }, [index]);
+
+  const carouselRef = React.useRef(null);
 
   return (
     <View>
       <Carousel
         layoutCardOffset={3}
-        ref={isCarousel}
+        ref={carouselRef}
         data={data}
         renderItem={CarouselCardItem}
         sliderWidth={SLIDER_WIDTH}
         itemWidth={ITEM_WIDTH}
-        onSnapToItem={(index) => setIndex(index)}
+        onSnapToItem={(index) => setIndex(index)} // Actualiza el índice manualmente
         useScrollView={true}
       />
       <Pagination
-        dotsLength={data.length}
-        activeDotIndex={index}
-        carouselRef={isCarousel}
+        dotsLength={originalData.length}
+        activeDotIndex={index % originalData.length} // Mantiene el índice en el rango del número original de elementos
+        carouselRef={carouselRef}
         // Resto de tus props de Pagination
       />
     </View>
