@@ -1,9 +1,15 @@
 import React from 'react';
 import { View, Text, Image, TextInput, TouchableOpacity } from 'react-native';
+import { StyleSheet } from "react-native";
+import React, { useState } from 'react';
+import { RadioButton } from 'react-native-paper';
 import {styles} from '../styles/cambioMoneda'
 
+
 const Convertidor = () => {
+
   return (  
+    
     <View style={styles.container}>
       <View style={styles.header}>
 
@@ -12,38 +18,42 @@ const Convertidor = () => {
         <Text style={styles.headerText}>Editar dirección</Text>
       </View>
       
-  <View style={styles.conversionInputs}>
-        <View style={styles.inputContainer}>
-          <Text style={styles.currencyLabel}>MXN</Text>
-          <TextInput
-            style={styles.input}
-            placeholder="Cantidad en MXN"
-            keyboardType="numeric"
-          />
-        </View>
-        <View style={styles.inputContainer}>
-          <Text style={styles.currencyLabel}>USD</Text>
-          <TextInput
-            style={styles.input}
-            placeholder="Cantidad en USD"
-            keyboardType="numeric"
-          />
-        </View>
-        <View style={styles.inputContainer}>
-          <Text style={styles.currencyLabel}>EUR</Text>
-          <TextInput
-            style={styles.input}
-            placeholder="Cantidad en EUR"
-            keyboardType="numeric"
-          />
-        </View>
+      <View style={styles.cont}>
+        <Text style={styles.text}>MXN</Text>
+          <View style={styles.radioButton}>
+              <RadioButton.Android
+                value="MXN"
+                status="checked"
+              />
+          </View>
       </View>
-      <TouchableOpacity style={styles.convertButton}>
-        <Text style={styles.convertButtonText}>Convertir</Text>
-      </TouchableOpacity>
+
+      <View style={styles.cont}>
+        <Text style={styles.text}>USD</Text>
+          <View style={styles.radioButton}>
+              <RadioButton.Android
+                value="USD"
+                status="checked"
+              />
+          </View>
+      </View>
+
+
+      <View style={styles.cont}>
+        <Text style={styles.text}>EUR</Text>
+          <View style={styles.radioButton}>
+              <RadioButton.Android
+                value="EUR"
+                status="checked"
+              />
+          </View>
+      </View>
 
     </View>
+
+    
   );
 };
+
 
 export default Convertidor;
