@@ -6,7 +6,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 5,
     backgroundColor: '#F8F9FA',
-    padding: 20,
+    padding: 0,
   },
   header: {
     width: 380,
@@ -35,8 +35,8 @@ const styles = StyleSheet.create({
 cont: {
   flexDirection: "row",
   backgroundColor: 'white',
+  width: '100%',
   justifyContent: 'space-between',
-  width: 380,
   height: 60,
   top: 0,
   marginTop: 20,
@@ -52,7 +52,7 @@ text: {
 
 radioButton: {
   marginRight: 10,
-},
+}
 
  
 });

@@ -54,16 +54,6 @@ const Productos = () => {
   return (
     <View style={styles.container}>
 
-     <View style={styles.header}>
-        <Image source={require('../img/izquierda.png')} style={styles.Icono}/>
-        <Text style={styles.headerText}>Catalogo De Producctos</Text>
-             <View style={styles.headerContainer}>
-        <TouchableOpacity onPress={handleClearCart} style={styles.clearButton}>
-        </TouchableOpacity>
-      </View>
-
-
-      </View>
       <View style={styles.cartContainer}>
         <FontAwesome name="shopping-cart" size={20} color="#00000" />
         
