@@ -36,6 +36,7 @@ cont: {
   flexDirection: "row",
   backgroundColor: 'white',
   width: '100%',
+  justifyContent: 'space-between',
   height: 60,
   top: 0,
   marginTop: 20,
