@@ -29,8 +29,8 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1
   },
   buttonContainer: {
-    width:'80%',
-    marginTop:25,
+    width:'90%',
+    marginTop:'5%',
   },
   container3:{
     flexDirection:"row",

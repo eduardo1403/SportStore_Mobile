@@ -6,19 +6,19 @@ const styles = StyleSheet.create({
          fontSize:16,
          position: 'absolute',
         left: 39,
-        top: 109,
+        top: 40,
         color: '#2B2525',
         fontFamily:'Poppins-SemiBold'
        },
        TextCont:{
-        fontSize:14,
+        fontSize:16,
         color:'#7B7472',
         position: 'absolute',
-        width: 315,
+        width: '90%',
+       left:'5%',
         height: 600,
         textAlign:'justify',
-        left: 31,
-        top: 166,
+        top: 90,
         fontFamily:'Poppins-Regular'
       },
    });
