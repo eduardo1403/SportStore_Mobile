@@ -6,7 +6,7 @@ const styles = StyleSheet.create({
          fontSize:18,
          position: 'absolute',
         left: 39,
-        top: 109,
+        top: 50,
         color: '#2B2525',
         fontFamily:'Poppins-SemiBold'
        },
@@ -14,18 +14,18 @@ const styles = StyleSheet.create({
         fontSize:16,
         color:'#7B7472',
         position: 'absolute',
-        width: 315,
+        width: '90%',
+       left:'5%',
         height: 600,
         textAlign:'justify',
-        left: 31,
-        top: 166,
+        top: 90,
         fontFamily:'Poppins-Regular'
       },
       TittleText2:{
         fontSize:18,
         position: 'absolute',
        left: 39,
-       top: 352,
+       top: 300,
        color: '#2B2525',
        fontFamily:'Poppins-SemiBold'
       },
@@ -33,11 +33,12 @@ const styles = StyleSheet.create({
        fontSize:16,
        color:'#7B7472',
        position: 'absolute',
-       width: 315,
-       height: 400,
+       width: '90%',
+       left:'5%',
+       height: 350,
        textAlign:'justify',
-       left: 31,
-       top: 395,
+       justifyContent:'center',
+       top: 340,
        fontFamily:'Poppins-Regular'
      },
 

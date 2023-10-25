@@ -19,7 +19,8 @@ const styles = StyleSheet.create({
       height: 50,
       margin:20,
       borderColor: 'gray',
-      borderBottomWidth: 1
+      borderBottomWidth: 1,
+      fontFamily:'Poppins-Regular',
     },
     fixToText: {
       flexDirection: 'row',
@@ -51,7 +52,7 @@ const styles = StyleSheet.create({
       fontWeight: 'bold',
       letterSpacing: 0.25,
       color: 'black',
-      fontFamily:'Poppins-Regular'
+      fontFamily:'Poppins-Regular',
     },
     Icono:{      
       position: 'absolute',

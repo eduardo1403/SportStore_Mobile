@@ -106,9 +106,9 @@ const styles = StyleSheet.create({
      fontSize:16,
  },
   buttonContainer: {
-     marginLeft: 20,
+     marginLeft: '5%',
      marginTop: 40,
-     width:350,
+     width:'90%',
 
    },
 
