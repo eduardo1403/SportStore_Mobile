@@ -1,9 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, Image, TextInput, TouchableOpacity} from 'react-native';
-import React from 'react';
 import { View, Text, Image, TextInput, TouchableOpacity } from 'react-native';
-import { StyleSheet } from "react-native";
-import React, { useState } from 'react';
 import { RadioButton } from 'react-native-paper';
 import {styles} from '../styles/cambioMoneda'
 import CheckBox from 'react-native-check-box';
