@@ -1,12 +1,31 @@
-import React from 'react';
-import {View, Text, Image, TouchableOpacity, ScrollView} from 'react-native';
+import React, {useEffect, useState} from 'react';
+import {View, Text, Image, TouchableOpacity, ScrollView, img} from 'react-native';
 import { style } from '../styles/inicio';
 import { StatusBar } from 'expo-status-bar';
 import CarouselCards from './CarouselCards';
 import { useNavigation } from "@react-navigation/native";
+import axios from 'axios';
 //<Image source={require('../img/banner1.png')} style={style.ImgBanner}/>
+//https://api-backend-mqv1.onrender.com/api/categories
 const Inicio = () => {
     const navigation = useNavigation();
+    const [categories, setCategories] = useState([]);
+
+    useEffect(() => {
+        const obtenerCategorias = async() =>{
+            const url = 'https://api-backend-mqv1.onrender.com/api/categories';
+            const resultado = await axios.get(url);
+            //console.log(resultado.data);
+            setCategories(resultado.data);
+        }
+        obtenerCategorias();
+    },[]);
+
+    
+    const categoryId = '64b9b2d88ce7d3f26a0a3961';
+    const selectedCategory = categories.filter(cat => cat._id === categoryId).map(filterCat => filterCat.imageUrl);
+
+    console.log(selectedCategory);
     return(
         <View>
             <View style={style.HeaderInicio}></View>
@@ -23,7 +42,13 @@ const Inicio = () => {
 
             <TouchableOpacity onPress={() => navigation.navigate('Producto')}>
                     <View style={style.ContainerImage2}>
-                        <Image source={require('../img/producto.jpg')} style={style.ImageProduct}/>
+                    {selectedCategory && (
+                            <Image
+                            source={require('../img/producto.jpg')}
+                            style={style.ImageProduct} // Ajusta el estilo según tus necesidades
+                            onError={(error) => console.log(error)}
+                            />
+                        )}
                     </View>
             </TouchableOpacity>
 
@@ -33,7 +58,11 @@ const Inicio = () => {
                     </View>
             </TouchableOpacity>
             <Text style={style.TitleProducto}>Conjuntos</Text>
-                <Text style={style.TitleProducto2}>Tops</Text>
+                <Text style={style.TitleProducto2} >
+                {categories
+                .filter(cat => cat._id === "64b9b2d88ce7d3f26a0a3961") // Reemplaza con el ID que estás buscando
+                .map(filteredCat => filteredCat.name)}
+                </Text>
                 <Text style={style.TitleProducto3}>Leggins</Text>
                 <Text style={style.CaballeroText}>Caballero</Text>
             <TouchableOpacity onPress={() => navigation.navigate('Producto')}>
