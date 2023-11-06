@@ -170,8 +170,8 @@ const style = StyleSheet.create({
     TitleProducto:{
         position: 'absolute',
         width: 83,
-        height: 34,
-        left: 13,
+        height: 43,
+        left: 17,
         top: 552,
         fontFamily: 'Poppins-Regular',
         fontStyle: 'normal',
@@ -192,7 +192,7 @@ const style = StyleSheet.create({
     TitleProducto2:{
         position: 'absolute',
         width: 83,
-        height: 34,
+        height: 43,
         left: 185,
         top: 552,
         fontFamily: 'Poppins-Regular',
@@ -214,14 +214,15 @@ const style = StyleSheet.create({
     TitleProducto3:{
         position: 'absolute',
         width: 83,
-        height: 34,
-        left: 327,
+        height: 43,
+        left: 310,
         top: 552,
         fontFamily: 'Poppins-Regular',
         fontStyle: 'normal',
         fontSize: 14,
         lineHeight: 21,
         color: '#000000',
+        textAlign:'center'
     },
     ContainerImageMen:{
         position: 'absolute',
@@ -236,14 +237,15 @@ const style = StyleSheet.create({
     TitleProducto4:{
         position: 'absolute',
         width: 83,
-        height: 34,
-        left: 33,
+        height: 43,
+        left: 9,
         top: 739,
         fontFamily: 'Poppins-Regular',
         fontStyle: 'normal',
         fontSize: 14,
         lineHeight: 21,
         color: '#000000',
+        textAlign: 'center'
     },
     ContainerImageMen2:{
         position: 'absolute',
@@ -258,14 +260,15 @@ const style = StyleSheet.create({
     TitleProducto5:{
         position: 'absolute',
         width: 83,
-        height: 34,
-        left: 173,
+        height: 43,
+        left: 157,
         top: 739,
         fontFamily: 'Poppins-Regular',
         fontStyle: 'normal',
         fontSize: 14,
         lineHeight: 21,
         color: '#000000',
+        textAlign: 'center'
     },
     ContainerImageMen3:{
         position: 'absolute',
@@ -280,14 +283,15 @@ const style = StyleSheet.create({
     TitleProducto6:{
         position: 'absolute',
         width: 83,
-        height: 34,
-        left: 333,
+        height: 43,
+        left: 309,
         top: 739,
         fontFamily: 'Poppins-Regular',
         fontStyle: 'normal',
         fontSize: 14,
         lineHeight: 21,
         color: '#000000',
+        textAlign: 'center'
     }
     
 });
