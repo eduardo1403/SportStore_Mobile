@@ -4,7 +4,22 @@ import {styles} from '../styles/detalle';
 import { useNavigation } from "@react-navigation/native";
 import RNPickerSelect from 'react-native-picker-select';
 
+const placeholder = {
+  label: 'Talla',
+  value: null,
+  color:'blue',
+};
+
+const items = [
+  { label: 'S', value: 'S' },
+  { label: 'XS', value: 'XS' },
+  { label: 'G', value: 'G' },
+  { label: 'L', value: 'L' },
+  { label: 'XL', value: 'XL' },
+];
+
 const vistaDet = () => {
+
 
 return (
 
@@ -17,8 +32,14 @@ return (
     <Text style={styles.textTit}>Pants Reebok</Text>
     <Text style={styles.text}>Pantalones deportivos para hombre en color negro</Text>
     </View>
-    <View>
-    </View>
+    <View style={styles.Container_select}>
+        <Text style={styles.textTit}>Talla</Text>
+        <RNPickerSelect
+          onValueChange={(value) => console.log(value)}
+          items={items}
+          placeholder={placeholder}
+        />
+      </View>
     <View style={styles.container3}>
       <View style={styles.buttonContainer}>
             <Button
