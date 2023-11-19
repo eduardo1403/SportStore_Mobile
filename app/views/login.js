@@ -1,22 +1,58 @@
-import React, { useState, Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import {Button, View, Image,TextInput, Text, Pressable, TouchableOpacity} from 'react-native';
 import {styles} from '../styles/login'
 import { useNavigation } from "@react-navigation/native";
+import axios from 'axios';
+import AsyncStorage from '@react-native-async-storage/async-storage'; 
 
-const formulario = () =>  {
-  const [usuario, setUsuario] = useState('');
-  const [contrasena, setContrasena] = useState('');
+const Login = () =>  {
+  const [email, setUsuario] = useState('');
+  const [password, setContrasena] = useState('');
   const [isValidEmail, setIsValidEmail] = useState(true);
   const [isValidPassword, setIsValidPassword] = useState(true);
+  
+
+  
+  const LogingUser = async () => {
+    const users = {
+      email,
+      password
+    };
+  
+    const url = 'https://api-backend-mqv1.onrender.com/api/users/login';
+  
+    try {
+      const response = await axios.post(url, users);
+      
+      // Si la respuesta del servidor es exitosa y contiene datos del usuario
+      if (response.data && response.data._id && response.data.name && response.data.lastName && response.data.email) {
+        // Guarda los datos del usuario en AsyncStorage
+        await AsyncStorage.setItem('usuario', JSON.stringify(response.data));
+        alert('Inicio de sesión exitoso');
+        navigation.navigate('Editar Perfil');
+      } else {
+        alert('Respuesta del servidor incompleta');
+      }
+    } catch (error) {
+      alert('Se produjo un error. Credenciales inválidas');
+    }
+  };
+
+  
+
+  useEffect(() => {
+    setUsuario('');
+    setContrasena('');
+  },[])
 
   const validateEmail = () => {
     const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
-    const isValid = emailRegex.test(usuario);
+    const isValid = emailRegex.test(email);
     setIsValidEmail(isValid);
   };
 
   const validatePassword = () => {
-    const isValid = contrasena.length >= 6;
+    const isValid = password.length >= 6;
     setIsValidPassword(isValid);
   };
 
@@ -39,7 +75,7 @@ const formulario = () =>  {
           <TextInput
         style={styles.input}
         placeholder="Correo electrónico"
-        value={usuario}
+        value={email}
         onChangeText={(text) => setUsuario(text)}
         onBlur={validateEmail}
       />
@@ -48,7 +84,7 @@ const formulario = () =>  {
         style={styles.input}
         placeholder="Contraseña"
         secureTextEntry={true}
-        value={contrasena}
+        value={password}
         onChangeText={(text) => setContrasena(text)}
         onBlur={validatePassword}
       />
@@ -58,6 +94,7 @@ const formulario = () =>  {
                 <Button
                 title="Iniciar sesión"
                 color="#DC3545"
+                onPress={LogingUser}
                 />
             </View>
           </TouchableOpacity>
@@ -67,4 +104,4 @@ const formulario = () =>  {
 }
 
 
-export default formulario
+export default Login

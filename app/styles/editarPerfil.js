@@ -71,7 +71,7 @@ text:{
   fontFamily:'Poppins-Regular'
 },
 buttonContainer: {
-  marginTop:300,
+  marginTop:250,
   margin: 20,
 },
 });

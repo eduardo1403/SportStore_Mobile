@@ -3,7 +3,7 @@ import {Button, View, Image,TextInput, Text, Pressable, StyleSheet, TouchableOpa
 import {styles} from '../styles/ajustes'
 import { useNavigation } from "@react-navigation/native";
 
-const ajustes = () =>  {
+const Ajustes = () =>  {
   const navigation = useNavigation();
     return (
       <View>
@@ -41,4 +41,4 @@ const ajustes = () =>  {
   }
 
 
-export default ajustes
+export default Ajustes
