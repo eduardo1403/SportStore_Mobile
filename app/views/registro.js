@@ -3,8 +3,9 @@ import {Button, View, Image,TextInput, Text, Pressable} from 'react-native';
 import {styles} from '../styles/login'
 import { useNavigation } from "@react-navigation/native";
 import axios from 'axios';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
-const registro = () =>  {
+const Registro = () =>  {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isValidEmail, setIsValidEmail] = useState(true);
@@ -16,7 +17,7 @@ const registro = () =>  {
   const [lastName, setLastName] = useState('');
   const [isValidApellidos, setIsValidApellidos] = useState(true);
   const [usuarios, setUsuarios] = useState([]);
-
+  const [hidePass, setHidePass] = useState(true);
 
   const registrarUser = () =>{
     const users = {
@@ -127,6 +128,7 @@ const registro = () =>  {
         value={confirmarContrasena}
         onChangeText={(text) => setConfirmarContrasena(text)}
         onBlur={validateConfirmPassword}
+        
       />
       {!passwordsMatch  && <Text style={{ color: 'red' }}>La contraseña no coincide</Text>}
 
@@ -143,4 +145,4 @@ const registro = () =>  {
 }
 
 
-export default registro
+export default Registro

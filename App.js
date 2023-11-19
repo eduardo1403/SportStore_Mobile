@@ -1,8 +1,6 @@
-import { StatusBar } from 'expo-status-bar';
 import 'react-native-gesture-handler';
-import { StyleSheet, Text, View } from 'react-native';
 import Inicio from './app/views/inicio';
-import Carrito from './app/views/carrito';
+import Carritos from './app/views/carrito';
 import EditarPerfil from './app/views/editarPerfil';
 import { useFonts } from 'expo-font';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -11,24 +9,35 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import ConfirmarCompra from './app/views/confirmarCompra';
 import Productos from './app/views/producto';
-import ajustes from './app/views/ajustes';
-import formulario from './app/views/login';
-import registro from './app/views/registro';
+import Ajustes from './app/views/ajustes';
+import Login from './app/views/login';
+import Registro from './app/views/registro';
 import Convertidor from './app/views/cambioMoneda';
 import Aviso from './app/views/avisoPriv';
-import mision from './app/views/MyV';
+import Mision from './app/views/myv';
 import Misdirecciones from './app/views/misDirecciones';
 import EdtDiecction from './app/views/editDirect';
+import Conjuntos from './app/views/conjuntos';
+import Leggins from './app/views/leggins';
+import Playeras from './app/views/playeras';
+import Pants from './app/views/pants';
+import Shorts from './app/views/shorts';
+
 
 const Stack = createNativeStackNavigator();
 
 function InicioScreen(){
   return(
     <Stack.Navigator>
-      <Stack.Screen name='Inicio' component={Inicio} options={{
+      <Stack.Screen name='Home' component={Inicio} options={{
         headerShown: false,
       }}/>
-      <Stack.Screen name='Producto' component={Productos} />
+      <Stack.Screen name='Tops' component={Productos} />
+      <Stack.Screen name='Conjuntos Deportivos' component={Conjuntos}/>
+      <Stack.Screen name='Leggins Deportivos' component={Leggins}/>
+      <Stack.Screen name='Playeras Deportivas' component={Playeras}/>
+      <Stack.Screen name='Pants Deportivos' component={Pants}/>
+      <Stack.Screen name='Shorts Deportivos' component={Shorts}/>
     </Stack.Navigator>
   )
 }
@@ -36,7 +45,7 @@ function InicioScreen(){
 function CarritoScreen() {
   return (
     <Stack.Navigator>
-      <Stack.Screen name='Carrito'component={Carrito} options={{
+      <Stack.Screen name='Carrito'component={Carritos} options={{
         headerShown: false,
       }}/>
       <Stack.Screen name='Confirmar compra' component={ConfirmarCompra}/>
@@ -54,16 +63,16 @@ function PerfilScreen() {
       <Stack.Screen name='Editar Perfil'component={EditarPerfil} options={{
         headerShown: false,
       }}/>
-      <Stack.Screen name='Ajustes' component={ajustes} />
-      <Stack.Screen name='Sesion' component={formulario} options={{
-      headerShown: false,
+      <Stack.Screen name='Ajustes' component={Ajustes} />
+      <Stack.Screen name='Sesion' component={Login} options={{
+      headerShown: true,
       }}/>
-      <Stack.Screen name='Registro' component={registro} options={{
-        headerShown: false
+      <Stack.Screen name='Registro' component={Registro} options={{
+        headerShown: true
       }}/>
       <Stack.Screen name='Cambio de moneda' component={Convertidor}/>
       <Stack.Screen name='Aviso de privacidad' component={Aviso}/>
-      <Stack.Screen name='Misión y Visión' component={mision}/>
+      <Stack.Screen name='myv' component={Mision}/>
       <Stack.Screen name='Dirección' component={Misdirecciones}/>
       <Stack.Screen name='Editar dirección' component={EdtDiecction}/>
     </Stack.Navigator>
@@ -81,7 +90,7 @@ export default function App() {
   const Tab = createBottomTabNavigator();
   return (
     <NavigationContainer>
-      <Tab.Navigator initialRouteName='Inicio'screenOptions={{
+      <Tab.Navigator initialRouteName='Home'screenOptions={{
         tabBarActiveTintColor:'#DC3545',
         tabBarItemStyle:{
           height: 60
