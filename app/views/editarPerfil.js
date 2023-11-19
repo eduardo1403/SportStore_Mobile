@@ -8,6 +8,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const EditarPerfil = (props) => {
   const navigation = useNavigation();
+
   const isFocused = useIsFocused();
   const [email, setEmail] = useState('');
   const [nombre, setNombre] = useState('');
@@ -36,6 +37,7 @@ const EditarPerfil = (props) => {
   }, [isFocused]);
 
   
+
 
   return(
     <View style={styles.containerBack}>
