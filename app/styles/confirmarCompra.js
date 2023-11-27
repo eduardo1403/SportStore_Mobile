@@ -5,9 +5,10 @@ const styles = StyleSheet.create({
 
     text:{
       left:20,
-      top:20,
+      top:10,
       fontSize:16,
       color:'black',
+      padding: 5
     },
     container:{
         flexDirection:"row",
@@ -27,11 +28,9 @@ const styles = StyleSheet.create({
      fontSize:16,
  },
  container2:{
-        flexDirection:"row",
         backgroundColor: 'white',
-        justifyContent:'space-between',
         width: '100%',
-        height: 166,
+        height: 350,
         top: 0,
         marginTop:40,
         elevation:5,               
@@ -90,7 +89,7 @@ const styles = StyleSheet.create({
         width: '100%',
         height:100,
         top: 0,
-        marginTop:260,
+        marginTop:80,
         elevation:30,              
   },
   textFin1:{

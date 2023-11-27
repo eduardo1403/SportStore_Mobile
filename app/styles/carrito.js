@@ -58,13 +58,14 @@ const styleCart = StyleSheet.create({
         color: '#000000'
     },
     ContainerProducto:{
+        flex: 1,
+        backgroundColor: '#F8F9FA',
+        padding: 10,
         position: 'absolute',
-        width: 420,
-        height: 160,
-        left: 0,
-        top: 80,
-        backgroundColor: 'white',
-        elevation:4
+        width: '100%',
+        top: 70,
+        elevation: 2,
+        maxHeight: '50%'
     },
     ImageProducto: {
         position: 'absolute',

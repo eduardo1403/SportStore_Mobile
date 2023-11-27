@@ -3,13 +3,16 @@ import { View, Text, FlatList, TouchableOpacity, Image } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
 import axios from 'axios';
 import { styles } from '../styles/producto'; // Importa los estilos desde el archivo 
-
+import { useNavigation } from "@react-navigation/native";
+import Carritos from './carrito';
+import AsyncStorage from '@react-native-async-storage/async-storage'; 
 
 
 const Productos = () => {
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [cartItems, setCartItems] = useState([]);
   const [producto, setProducto] = useState([]);
+  const navigation = useNavigation();
 
   useEffect(() => {
     const obtenerProducto = async() =>{
@@ -19,7 +22,20 @@ const Productos = () => {
       setProducto(resultado.data);
   }
   obtenerProducto();
-  },[]);
+
+  const saveCartItems = async () => {
+    try {
+      await AsyncStorage.setItem('cartItem', JSON.stringify(cartItems));
+      navigation.navigate('Carrito');
+    } catch (error) {
+      alert('Se produjo un error al guardar en el carrito');
+    }
+  };
+
+  if (cartItems.length > 0) {
+    saveCartItems();
+  }
+  },[cartItems]);
 
   let Top1 = {};
   
@@ -115,13 +131,16 @@ const Productos = () => {
   ];
 
 
-  const handleProductPress = (product) => {
+   const handleProductPress = (product) => {
     setSelectedProduct(product);
+    
   };
 
-  const handleAddToCart = (product) => {
+  const handleAddToCart = async (product) => {
     setCartItems([...cartItems, product]);
   };
+  
+  
 
   const handleRemoveFromCart = (product) => {
     const updatedCart = cartItems.filter((item) => item.id !== product.id);

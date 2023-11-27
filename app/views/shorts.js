@@ -1,17 +1,21 @@
-import React, { useState, useEffect, useDebugValue } from 'react';
+import React, { useState, useEffect, createContext} from 'react';
 import { View, Text, FlatList, TouchableOpacity, Image } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
 import axios from 'axios';
 import { styles } from '../styles/producto'; // Importa los estilos desde el archivo 
 import { useNavigation } from "@react-navigation/native";
+import Carritos from './carrito';
+import AsyncStorage from '@react-native-async-storage/async-storage'; 
 
 
-const Shorts = () => {
+const Shorts = (props) => {
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [cartItems, setCartItems] = useState([]);
   const [producto, setProducto] = useState([]);
   const navigation = useNavigation();
+
   
+
   useEffect(() => {
     const obtenerProducto = async() =>{
       const url = 'https://api-backend-mqv1.onrender.com/api/product';
@@ -20,7 +24,21 @@ const Shorts = () => {
       setProducto(resultado.data);
   }
   obtenerProducto();
-  },[]);
+
+
+  const saveCartItems = async () => {
+    try {
+      await AsyncStorage.setItem('cartItem', JSON.stringify(cartItems));
+      navigation.navigate('Carrito');
+    } catch (error) {
+      alert('Se produjo un error al guardar en el carrito');
+    }
+  };
+
+  if (cartItems.length > 0) {
+    saveCartItems();
+  }
+  },[cartItems]);
 
   let Short1 = {};
   
@@ -121,9 +139,11 @@ const Shorts = () => {
     
   };
 
-  const handleAddToCart = (product) => {
+  const handleAddToCart = async (product) => {
     setCartItems([...cartItems, product]);
   };
+  
+  
 
   const handleRemoveFromCart = (product) => {
     const updatedCart = cartItems.filter((item) => item.id !== product.id);
@@ -155,29 +175,34 @@ const Shorts = () => {
   );
 
   return (
-    <View style={styles.container}>
+    
+        <View style={styles.container}>
 
-      <View style={styles.cartContainer}>
-        <FontAwesome name="shopping-cart" size={20} color="#00000" />
-        
-      </View>
+          <View style={styles.cartContainer}>
+            <FontAwesome name="shopping-cart" size={20} color="#00000" />
+            
+          </View>
 
-      <FlatList
-        data={productsData}
-        renderItem={renderProduct}
-        keyExtractor={(item) => item.id}
-        numColumns={2} 
-      />
-      {selectedProduct && (
-        <View style={styles.productDetails}>
-          <Image source={{uri:selectedProduct.image}} style={styles.productImage} />
-          <Text style={styles.productName}>Nombre: {selectedProduct.name}</Text>
-          <Text style={styles.productPrice}>Precio: {selectedProduct.price}</Text>
-          <Text style={styles.productDescription}>Descripción: {selectedProduct.description}</Text>
+          <FlatList
+            data={productsData}
+            renderItem={renderProduct}
+            keyExtractor={(item) => item.id}
+            numColumns={2} 
+          />
+          {selectedProduct && (
+            <View style={styles.productDetails}>
+              <Image source={{uri:selectedProduct.image}} style={styles.productImage} />
+              <Text style={styles.productName}>Nombre: {selectedProduct.name}</Text>
+              <Text style={styles.productPrice}>Precio: {selectedProduct.price}</Text>
+              <Text style={styles.productDescription}>Descripción: {selectedProduct.description}</Text>
+            </View>
+          )}
         </View>
-      )}
-    </View>
+      
   );
 };
+
+
+
 
 export default Shorts;
