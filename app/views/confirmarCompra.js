@@ -1,10 +1,23 @@
-import React from "react";
-import { View, Text,Image, Button, TouchableOpacity} from "react-native";
+import React, { useContext, useState, useEffect } from "react";
+import { View, Text,Image, Button, TouchableOpacity, StyleSheet, FlatList} from "react-native";
 import {styles} from '../styles/confirmarCompra';
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation, useIsFocused } from "@react-navigation/native";
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { FontAwesome } from '@expo/vector-icons'; 
+import Stripe from '@stripe/stripe-react-native';
 
-const ConfirmarCompra = () =>  {
+const ConfirmarCompra = ({ route }) =>  {
   const navigation = useNavigation();
+  const { carrito, totalPrice } = route.params;
+
+  const renderItem = ({ item }) => (
+    <View style={estilos.tarjeta}>
+      <Image source={{ uri: item.image }} style={estilos.Foto} />
+      <Text style={estilos.TitleProd}>{item.name}</Text>
+      <Text style={estilos.Precios}>{item.price}</Text>
+    </View>
+  );
+
     return (
       <View>
         <TouchableOpacity onPress={() => navigation.navigate('Dirección')}>
@@ -15,30 +28,78 @@ const ConfirmarCompra = () =>  {
 Huejutla de reyes Hidalgo Mexico 43000</Text>
         </View>
         </TouchableOpacity>
+
+
         <View style={styles.container2}>
         <Text style={styles.text}>Árticulo</Text>
-        <Image source={require('../img/foto.jpg')} style={styles.producto}/>
-        <Text style={styles.textProd}>Playera deportiva Nike</Text>
-        <Text style={styles.textTalla}>L</Text>
-        <Text style={styles.textPrecio}>$MXN800.00</Text>
+
+        <FlatList
+        data={carrito}
+        keyExtractor={(item) => item.id.toString()}
+        renderItem={renderItem}
+        />
+        
         </View>
-        <View>
-        <Text style={styles.textTit}>Forma de pago</Text>
-        <Image source={require('../img/Paypal.png')} style={styles.imgPago}/>
-        <Text style={styles.textPago}>Paypal</Text>
-        </View>
+
+
+        
         <View style={styles.container3}>
         <Text style={styles.textFin1}>Total:</Text>
-        <Text style={styles.textFin2}>$MXN800</Text>
+        <Text style={styles.textFin2}>$MXN {totalPrice}</Text>
         <View style={styles.buttonContainer}>
               <Button
-              title="Comprar"
+              title="Confirmar Compra"
               color="#DC3545"
               />
           </View>
         </View>
+
+
       </View>
     )
   }
+
+
+  const estilos = StyleSheet.create({
+    tarjeta: {
+      flex: 1,
+      flexDirection: 'column',
+      alignItems: 'center',
+      margin: 8,
+      padding: 16,
+      backgroundColor: '#fff',
+      borderRadius: 8,
+      borderWidth: 1,
+      borderColor: '#ccc',
+    },
+    TitleProd: {
+      fontFamily: 'Poppins-SemiBold',
+      fontSize: 14,
+      marginTop: 4,
+      textAlign: 'center',
+    },
+    Descripcion: {
+      fontFamily: 'Poppins-Regular',
+      fontSize: 14,
+      marginTop: 4,
+      textAlign: 'center',
+    },
+    Precios: {
+      fontFamily: 'Poppins-SemiBold',
+      fontSize: 14,
+      color: '#dc3545',
+      marginTop: 4,
+      textAlign: 'center',
+    },
+    Foto: {
+      width: 150,
+      height: 150,
+      resizeMode: 'contain',
+    },
+    BasuraIcon: {
+      padding: 5,
+      marginTop: 8,
+    },
+  });
 
 export default ConfirmarCompra;

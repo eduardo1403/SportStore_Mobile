@@ -4,17 +4,17 @@ import { styles } from '../styles/editarPerfil';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { useNavigation, useIsFocused } from "@react-navigation/native";
 import AsyncStorage from '@react-native-async-storage/async-storage';
-
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
 const EditarPerfil = (props) => {
   const navigation = useNavigation();
-
   const isFocused = useIsFocused();
   const [email, setEmail] = useState('');
   const [nombre, setNombre] = useState('');
   const [apellidos, setApellidos] = useState('');
   const [contrasena, setContrasena] = useState('');
   const [usuario, setUsuario] = useState(null);
+  const [showPassword, setShowPassword] = useState(false);
 
 
   const cargarDatosInicioSesion = async () => {
@@ -69,9 +69,17 @@ const EditarPerfil = (props) => {
         <TextInput
           style={styles.input}
           placeholder="Contraseña"
+          secureTextEntry={!showPassword}
           value={usuario ? usuario.password : ''}
-          onChangeText={(text) => {/* Actualiza el estado de los apellidos */}}
+          onChangeText={(text) => setContrasena(text)}
         />
+        <TouchableOpacity onPress={() => setShowPassword(!showPassword)} style={styles.eyeIconContainer}>
+          {showPassword ? (
+            <MaterialCommunityIcons name="eye-off" size={24} color="black" />
+          ) : (
+            <FontAwesome name="eye" size={24} color="black" />
+          )}
+        </TouchableOpacity>
         </View> 
 
         <View style={styles.container}>

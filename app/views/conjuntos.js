@@ -3,13 +3,17 @@ import { View, Text, FlatList, TouchableOpacity, Image } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
 import axios from 'axios';
 import { styles } from '../styles/producto'; // Importa los estilos desde el archivo 
-
+import { useNavigation } from "@react-navigation/native";
+import Carritos from './carrito';
+import AsyncStorage from '@react-native-async-storage/async-storage'; 
 
 
 const Conjuntos = () => {
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [cartItems, setCartItems] = useState([]);
   const [producto, setProducto] = useState([]);
+  const navigation = useNavigation();
+
 
   useEffect(() => {
     const obtenerProducto = async() =>{
@@ -19,7 +23,22 @@ const Conjuntos = () => {
       setProducto(resultado.data);
   }
   obtenerProducto();
-  },[]);
+
+  const saveCartItems = async () => {
+    try {
+      await AsyncStorage.setItem('cartItem', JSON.stringify(cartItems));
+      navigation.navigate('Carrito');
+    } catch (error) {
+      alert('Se produjo un error al guardar en el carrito');
+    }
+  };
+
+  if (cartItems.length > 0) {
+    saveCartItems();
+  }
+  },[cartItems]);
+
+  
 
   let Conjunto1 = {};
   
@@ -113,13 +132,16 @@ const Conjuntos = () => {
   ];
 
 
-  const handleProductPress = (product) => {
+   const handleProductPress = (product) => {
     setSelectedProduct(product);
+    
   };
 
-  const handleAddToCart = (product) => {
+  const handleAddToCart = async (product) => {
     setCartItems([...cartItems, product]);
   };
+  
+  
 
   const handleRemoveFromCart = (product) => {
     const updatedCart = cartItems.filter((item) => item.id !== product.id);
@@ -129,7 +151,7 @@ const Conjuntos = () => {
   const handleClearCart = () => {
     setCartItems([]);
   };
-
+  
   const renderProduct = ({ item }) => (
     <TouchableOpacity onPress={() => handleProductPress(item)} style={styles.productContainer}>
       <Image source={{uri: item.image}} style={styles.productImage} />
