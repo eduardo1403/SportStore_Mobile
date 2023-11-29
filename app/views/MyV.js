@@ -1,9 +1,9 @@
-import React, {Component} from 'react';
+import React from 'react';
 import {View, Image, Text,} from 'react-native';
-import {styles} from '../styles/MyV'
+import {styles} from '../styles/myv'
 
 
-const mision = () =>  {
+const Mision = () =>  {
     return (
       <View>
         <Text style={styles.TittleText}>Misión</Text>
@@ -18,4 +18,4 @@ const mision = () =>  {
   }
 
 
-export default mision
+export default Mision

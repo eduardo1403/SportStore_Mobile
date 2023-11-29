@@ -71,8 +71,12 @@ text:{
   fontFamily:'Poppins-Regular'
 },
 buttonContainer: {
-  marginTop:300,
+  marginTop:230,
   margin: 20,
 },
+eyeIconContainer:{
+  left:310,
+  bottom: 55
+}
 });
   export {styles}

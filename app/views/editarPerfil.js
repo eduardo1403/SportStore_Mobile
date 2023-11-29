@@ -1,39 +1,44 @@
-import React, { useState } from 'react';
+import React,{useState, useEffect} from 'react';
 import {View, Text, Image, TextInput, TouchableOpacity, Button} from 'react-native';
 import { styles } from '../styles/editarPerfil';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation, useIsFocused } from "@react-navigation/native";
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
-const EditarPerfil = () => {
+const EditarPerfil = (props) => {
   const navigation = useNavigation();
-  const [password, setPassword] = useState('');
-  const [isValidPassword, setIsValidPassword] = useState(true);
-  const [confirmarContrasena, setConfirmarContrasena] = useState('');
-  const [passwordsMatch, setPasswordsMatch] = useState(true);
-  const [name, setName] = useState('');
-  const [isValidNombre, setIsValidNombre] = useState(true);
-  const [lastName, setLastName] = useState('');
-  const [isValidApellidos, setIsValidApellidos] = useState(true);
+  const isFocused = useIsFocused();
+  const [email, setEmail] = useState('');
+  const [nombre, setNombre] = useState('');
+  const [apellidos, setApellidos] = useState('');
+  const [contrasena, setContrasena] = useState('');
+  const [usuario, setUsuario] = useState(null);
+  const [showPassword, setShowPassword] = useState(false);
 
-  const validateNombre = () => {
-    const nombreRegex = /^[A-Za-z]+$/;
-    const isValid = nombreRegex.test(name);
-    setIsValidNombre(isValid);
+
+  const cargarDatosInicioSesion = async () => {
+    try {
+      const usuarioGuardado = await AsyncStorage.getItem('usuario');
+      if (usuarioGuardado) {
+        const usuarioParseado = JSON.parse(usuarioGuardado);
+        setUsuario(usuarioParseado);
+      }
+    } catch (error) {
+      console.error('Error al cargar los datos de inicio de sesión:', error);
+    }
   };
 
-  const validateApellidos = () => {
-    const apellidosRegex = /^[A-Za-z]+$/;
-    const isValid = apellidosRegex.test(lastName);
-    setIsValidApellidos(isValid);
-  };
+  useEffect(() => {
+    if (isFocused) {
+      cargarDatosInicioSesion();
+    }
+    
+  }, [isFocused]);
 
-  const validatePassword = () => {
-    setIsValidPassword(password.length >= 6);
-  };
+  
 
-  const validateConfirmPassword = () => {
-    setPasswordsMatch(password === confirmarContrasena);
-};
+
   return(
     <View style={styles.containerBack}>
       <View style={styles.HeaderInicio}></View>
@@ -44,40 +49,39 @@ const EditarPerfil = () => {
             </TouchableOpacity>
         <View style={styles.content}>
         <TextInput
-        style={styles.input}
-        placeholder="Nombre"
-        value={name}
-        onChangeText={(text) => setName(text)}
-        onBlur={validateNombre}
-      />
-      {!isValidNombre && <Text style={{ color: 'red' }}>El nombre no debe contener números o caracteres especiales</Text>}
-      <TextInput
-        style={styles.input}
-        placeholder="Apellidos"
-        value={lastName}
-        onChangeText={(text) => setLastName(text)}
-        onBlur={validateApellidos}
-      />
-      {!isValidApellidos && <Text style={{ color: 'red' }}>Los apellidos no deben contener números o caracteres especiales</Text>}
+          style={styles.input}
+          placeholder="Nombre"
+          value={usuario ? usuario.name : ''}
+          onChangeText={(text) => {}}
+        />
         <TextInput
-        style={styles.input}
-        placeholder="Contraseña"
-        secureTextEntry={true}
-        value={password}
-        onChangeText={(text) => setPassword(text)}
-        onBlur={validatePassword}
-      />
-      {!isValidPassword && <Text style={{ color: 'red' }}>Contraseña no válida</Text>}
-      <TextInput
-        style={styles.input}
-        placeholder="Confirmar Contraseña"
-        secureTextEntry={true}
-        value={confirmarContrasena}
-        onChangeText={(text) => setConfirmarContrasena(text)}
-        onBlur={validateConfirmPassword}
-      />
-      {!passwordsMatch  && <Text style={{ color: 'red' }}>La contraseña no coincide</Text>}
+          style={styles.input}
+          placeholder="Email"
+          value={usuario ? usuario.email : ''}
+          onChangeText={(text) => {/* Actualiza el estado del email */}}
+        />
+        <TextInput
+          style={styles.input}
+          placeholder="Apellidos"
+          value={usuario ? usuario.lastName : ''}
+          onChangeText={(text) => {/* Actualiza el estado de los apellidos */}}
+        />
+        <TextInput
+          style={styles.input}
+          placeholder="Contraseña"
+          secureTextEntry={!showPassword}
+          value={usuario ? usuario.password : ''}
+          onChangeText={(text) => setContrasena(text)}
+        />
+        <TouchableOpacity onPress={() => setShowPassword(!showPassword)} style={styles.eyeIconContainer}>
+          {showPassword ? (
+            <MaterialCommunityIcons name="eye-off" size={24} color="black" />
+          ) : (
+            <FontAwesome name="eye" size={24} color="black" />
+          )}
+        </TouchableOpacity>
         </View> 
+
         <View style={styles.container}>
           <TouchableOpacity onPress={() => navigation.navigate('Dirección')}>
             <Text style={styles.text}>Domicilio </Text>
@@ -87,9 +91,8 @@ const EditarPerfil = () => {
         <TouchableOpacity >
             <View style={styles.buttonContainer}>
                 <Button
-                title="Iniciar sesión"
+                title="Guardar información"
                 color="#DC3545"
-                onPress={() => navigation.navigate('Sesion')}
                 />
             </View>
           </TouchableOpacity>     
