@@ -5,6 +5,7 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import { useNavigation, useIsFocused } from "@react-navigation/native";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import axios from 'axios';
 
 const EditarPerfil = (props) => {
   const navigation = useNavigation();
@@ -28,13 +29,35 @@ const EditarPerfil = (props) => {
       console.error('Error al cargar los datos de inicio de sesión:', error);
     }
   };
+  
 
   useEffect(() => {
     if (isFocused) {
       cargarDatosInicioSesion();
     }
     
-  }, [isFocused]);
+  }, [isFocused, usuario]);
+
+  const actualizarDatosUsuario = async () => {
+    try {
+      const response = await axios.put(`https://api-backend-mqv1.onrender.com/api/users/${usuario._id}`, {
+        name: usuario.name,
+        email: usuario.email,
+        lastName: usuario.lastName,
+        password: usuario.password,
+        // Agrega otros campos según sea necesario
+      });
+
+      if (response.status === 200) {
+        alert('Los datos se actualizaron correctamente.');
+      } else {
+        alert('Error. No se pudo actualizar los datos del usuario.');
+      }
+    } catch (error) {
+      console.error('Error al actualizar los datos del usuario:', error);
+      alert('Error. Ocurrió un error al intentar actualizar los datos del usuario.');
+    }
+  };
 
   
 
@@ -52,26 +75,26 @@ const EditarPerfil = (props) => {
           style={styles.input}
           placeholder="Nombre"
           value={usuario ? usuario.name : ''}
-          onChangeText={(text) => {}}
+          onChangeText={(text) => setUsuario({ ...usuario, name: text })}
         />
         <TextInput
           style={styles.input}
           placeholder="Email"
           value={usuario ? usuario.email : ''}
-          onChangeText={(text) => {/* Actualiza el estado del email */}}
+          onChangeText={(text) => setUsuario({ ...usuario, email: text })}
         />
         <TextInput
           style={styles.input}
           placeholder="Apellidos"
           value={usuario ? usuario.lastName : ''}
-          onChangeText={(text) => {/* Actualiza el estado de los apellidos */}}
+          onChangeText={(text) => setUsuario({ ...usuario, lastName: text })}
         />
         <TextInput
           style={styles.input}
           placeholder="Contraseña"
           secureTextEntry={!showPassword}
           value={usuario ? usuario.password : ''}
-          onChangeText={(text) => setContrasena(text)}
+          onChangeText={(text) => setUsuario({ ...usuario, password: text })}
         />
         <TouchableOpacity onPress={() => setShowPassword(!showPassword)} style={styles.eyeIconContainer}>
           {showPassword ? (
@@ -83,7 +106,7 @@ const EditarPerfil = (props) => {
         </View> 
 
         <View style={styles.container}>
-          <TouchableOpacity onPress={() => navigation.navigate('Dirección')}>
+          <TouchableOpacity onPress={() => navigation.navigate('Dirección',{ id: usuario._id })}>
             <Text style={styles.text}>Domicilio </Text>
             <Text style={styles.text2}>▶</Text>
           </TouchableOpacity>
@@ -93,6 +116,7 @@ const EditarPerfil = (props) => {
                 <Button
                 title="Guardar información"
                 color="#DC3545"
+                onPress={actualizarDatosUsuario}
                 />
             </View>
           </TouchableOpacity>     

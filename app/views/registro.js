@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import {Button, View, Image,TextInput, Text, Pressable} from 'react-native';
+import {Button, View, Image,TextInput, Text, Pressable, ScrollView} from 'react-native';
 import {styles} from '../styles/login'
 import { useNavigation } from "@react-navigation/native";
 import axios from 'axios';
@@ -74,7 +74,7 @@ const Registro = () =>  {
 };
   const navigation = useNavigation();
   return (
-      <View>
+      <ScrollView>
           <View style={styles.containerLogo}>
             <Image source={require('../img/logo.png')} style={styles.imagen}/>
           </View >
@@ -139,7 +139,7 @@ const Registro = () =>  {
               onPress={registrarUser}
               />
           </View>
-      </View>
+      </ScrollView>
       
   )
 }

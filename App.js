@@ -1,5 +1,5 @@
 import 'react-native-gesture-handler';
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import { useFonts } from 'expo-font';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
@@ -24,6 +24,10 @@ import Playeras from './app/views/playeras';
 import Pants from './app/views/pants';
 import Shorts from './app/views/shorts';
 import CartContext from './app/views/CartContext';  // Asegúrate de importar el contexto
+import Stripe from './app/views/stripe';
+import { StripeProvider } from '@stripe/stripe-react-native';
+import AddDiecction from './app/views/agregarDirección';
+
 
 const Stack = createNativeStackNavigator();
 
@@ -48,6 +52,7 @@ function CarritoScreen() {
       <Stack.Screen name='Confirmar compra' component={ConfirmarCompra} />
       <Stack.Screen name='Dirección' component={Misdirecciones} />
       <Stack.Screen name='Editar dirección' component={EdtDiecction} />
+      <Stack.Screen name='Realizar Pago' component={Stripe}/>
     </Stack.Navigator>
   );
 }
@@ -64,6 +69,7 @@ function PerfilScreen() {
       <Stack.Screen name='myv' component={Mision} />
       <Stack.Screen name='Dirección' component={Misdirecciones} />
       <Stack.Screen name='Editar dirección' component={EdtDiecction} />
+      <Stack.Screen name='Agregar dirección' component={AddDiecction}/>
     </Stack.Navigator>
   );
 }
@@ -73,8 +79,8 @@ export default function App() {
     'Poppins-Regular': require('./app/fonts/Poppins-Regular.ttf'),
     'Poppins-SemiBold': require('./app/fonts/Poppins-SemiBold.ttf'),
   });
+  
 
-  const Stack = createNativeStackNavigator();
   const Tab = createBottomTabNavigator();
   const [cartItems, setCartItems] = React.useState([]);
 
@@ -119,6 +125,13 @@ export default function App() {
           }} />
         </Tab.Navigator>
       </CartContext.Provider>
+        <StripeProvider
+        publishableKey="pk_test_51OGsSHFvEPsyrPLbMJ6Z8Mnel3TW6lbL9CiJxVdUtYY1srOkmGmWiGwh4tYVISZa7MmvQz5gos4vesoDK6BF0Cr600a6dghOsm"
+        urlScheme="your-url-scheme" // required for 3D Secure and bank redirects
+        merchantIdentifier="merchant.com.{{YOUR_APP_NAME}}" // required for Apple Pay
+      >
+      </StripeProvider>
     </NavigationContainer>
+    
   );
 }

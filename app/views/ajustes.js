@@ -7,12 +7,6 @@ const Ajustes = () =>  {
   const navigation = useNavigation();
     return (
       <View>
-        <View style={styles.container}>
-          <TouchableOpacity onPress={() => navigation.navigate('Cambio de moneda')}>
-            <Text style={styles.text}>Moneda</Text>
-            <Text style={styles.text2}>MXN ▶</Text>
-          </TouchableOpacity>
-        </View>
         <View style={styles.container2}>
           <TouchableOpacity onPress={() => navigation.navigate('Aviso de privacidad')}>
             <Text style={styles.text}>Aviso de privacidad</Text>
