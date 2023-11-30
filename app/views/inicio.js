@@ -5,7 +5,6 @@ import { StatusBar } from 'expo-status-bar';
 import CarouselCards from './CarouselCards';
 import { useNavigation } from "@react-navigation/native";
 import axios from 'axios';
-
 //<Image source={require('../img/banner1.png')} style={style.ImgBanner}/>
 //https://api-backend-mqv1.onrender.com/api/categories
 const Inicio = () => {

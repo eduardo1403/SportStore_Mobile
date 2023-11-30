@@ -36,7 +36,8 @@ const styleCart = StyleSheet.create({
         left: 0,
         top: 698,
         backgroundColor: 'transparent',
-        elevation:2
+        elevation:2,
+        maxHeight: '20%'
     },
     ButtonComprar:{
         position: 'absolute',
@@ -65,7 +66,7 @@ const styleCart = StyleSheet.create({
         width: '100%',
         top: 70,
         elevation: 2,
-        maxHeight: '50%'
+        maxHeight: '70%'
     },
     ImageProducto: {
         position: 'absolute',

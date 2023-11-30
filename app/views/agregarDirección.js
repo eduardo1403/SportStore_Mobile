@@ -2,7 +2,7 @@ import React, { useState} from 'react';
 import { View, Text,TextInput,Button } from 'react-native';
 import {styles} from '../styles/editDirect'
 
-const EdtDiecction = ({route}) => {
+const AddDiecction = () => {
   
   const [nombre, setNombre] = useState('');
   const [isValidNombre, setIsValidNombre] = useState(true);
@@ -18,9 +18,7 @@ const EdtDiecction = ({route}) => {
   const [isValidCalle, setIsCalle] = useState(true);
   const [indicaciones, setIndicaciones] = useState('');
   const [isValidIndicaciones, setIsIndicaciones] = useState(true);
-  const { item } = route.params;
-
-  console.log(item)
+ 
 
 
   const validateNombre = () => {
@@ -69,7 +67,7 @@ const validateIndicaciones = () => {
         <TextInput
         style={styles.input}
         placeholder="Nombre"
-        value={item ? item.nombre : ''}
+        value={nombre}
         onChangeText={(text) => setNombre(text)}
         onBlur={validateNombre}
       />
@@ -77,7 +75,7 @@ const validateIndicaciones = () => {
         <TextInput
         style={styles.input}
         placeholder="Estado"
-        value={item ? item.estado : ''}
+        value={estado}
         onChangeText={(text) => setEstado(text)}
         onBlur={validateEstado}
       />
@@ -85,7 +83,7 @@ const validateIndicaciones = () => {
         <TextInput
         style={styles.input}
         placeholder="Municipio"
-        value={item ? item.municipio : ''}
+        value={municipio}
         onChangeText={(text) => setMunicipio(text)}
         onBlur={validateMunicipio}
       />
@@ -93,7 +91,7 @@ const validateIndicaciones = () => {
         <TextInput
         style={styles.input}
         placeholder="Colonia"
-        value={item ? item.colonia : ''}
+        value={colonia}
         onChangeText={(text) => setColonia(text)}
         onBlur={validateColonia}
       />
@@ -101,7 +99,7 @@ const validateIndicaciones = () => {
         <TextInput
         style={styles.input}
         placeholder="Calle"
-        value={item ? item.calle : ''}
+        value={calle}
         onChangeText={(text) => setCalle(text)}
         onBlur={validateCalle}
       />
@@ -109,7 +107,7 @@ const validateIndicaciones = () => {
         <TextInput
         style={styles.input}
         placeholder="Telefono"
-        value={item ? item.telefono : ''}
+        value={telefono}
         onChangeText={(text) => setTelefono(text)}
         onBlur={validateTelefono}
       />
@@ -117,7 +115,7 @@ const validateIndicaciones = () => {
         <TextInput
         style={styles.input}
         placeholder="Indicaciones adicionales"
-        value={item ? item.indicaciones : ''}
+        value={indicaciones}
         onChangeText={(text) => setIndicaciones(text)}
         onBlur={validateIndicaciones}
       />
@@ -135,5 +133,5 @@ const validateIndicaciones = () => {
   );
 };
 
-export default EdtDiecction;
+export default AddDiecction;
 
