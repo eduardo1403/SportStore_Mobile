@@ -30,43 +30,41 @@ const styleCart = StyleSheet.create({
         top: 10,
     },
     ContainerCompra:{
-        position: 'absolute',
-        width: 420,
-        height: 68,
-        left: 0,
-        top: 698,
-        backgroundColor: 'transparent',
-        elevation:2,
-        maxHeight: '20%'
+        flexDirection:"row",
+        backgroundColor: 'white',
+        justifyContent:'space-between',
+        width: '100%',
+        height:100,
+        top: '90%',
+        left:0,
+        right:0,
+        elevation:30,
+        position:'absolute'
     },
     ButtonComprar:{
-        position: 'absolute',
-        width: 128,
-        height: 35,
-        left: 18,
-        top: 780
+        marginLeft: '5%',
+        marginTop: '7%',
+        width:'50%',
     },
     PrecioTotalCompra:{
-        position: 'absolute',
-        width: 102,
-        height: 24,
-        left: 163,
-        top: 787,
         fontFamily: 'Poppins-Regular',
-        fontStyle: 'normal',
         fontSize: 16,
         lineHeight: 24,
-        color: '#000000'
+        color: '#000000',
+        position:'absolute',
+        top:'35%',
+        left:'65%',
+        fontSize:16,
     },
     ContainerProducto:{
-        flex: 1,
         backgroundColor: '#F8F9FA',
         padding: 10,
         position: 'absolute',
         width: '100%',
-        top: 70,
+        height:'100%',
         elevation: 2,
-        maxHeight: '70%'
+        maxHeight: '70%',
+        marginTop:'20%'
     },
     ImageProducto: {
         position: 'absolute',
@@ -127,7 +125,16 @@ const styleCart = StyleSheet.create({
         position: 'absolute',
         left: 346,
         top: 720
-    }
+    },
+    ContainerFin:{
+        width:'100%',
+        height:'100%'
+    },
+    ContainerInicio:{
+        position:'absolute',
+        width:'100%',
+        height:'100%'
+    },
 })
 
 export {styleCart}

@@ -31,13 +31,8 @@ const styles = StyleSheet.create({
   },
   Icono:{   
     position: "absolute",
-  marginLeft: 370,
+  marginLeft: 350,
   marginTop: 30,
-  },
-  content: {
-    justifyContent:'center',
-    marginLeft:10,
-    marginTop:'20%',
   },
   input: {
     fontSize: 16,
@@ -49,14 +44,12 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1
   },
   container:{
-    flexDirection:"row",
     backgroundColor: 'white',
-    justifyContent:'space-between',
     width: '100%',
-    height: 60,
-    top: 0,
-    marginTop:40,
-    elevation:5,               
+    height: '8%',
+    marginTop:'100%',
+    elevation:5,  
+    position:'absolute'             
 },
 text2:{
   left:370,
@@ -71,12 +64,22 @@ text:{
   fontFamily:'Poppins-Regular'
 },
 buttonContainer: {
-  marginTop:230,
-  margin: 20,
+  left:"10%",
+  width:'80%',
 },
 eyeIconContainer:{
   left:310,
-  bottom: 55
-}
+  bottom: '50%'
+},
+forms:{
+  width:'100%',
+  height:'70%',
+  marginTop:'15%',
+  position:'absolute'
+},
+ContainerBoton:{
+  width:'100%',
+  marginTop:'165%'
+},
 });
   export {styles}

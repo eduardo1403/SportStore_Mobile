@@ -7,15 +7,47 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import axios from 'axios';
 
+
 const EditarPerfil = (props) => {
   const navigation = useNavigation();
   const isFocused = useIsFocused();
-  const [email, setEmail] = useState('');
-  const [nombre, setNombre] = useState('');
-  const [apellidos, setApellidos] = useState('');
-  const [contrasena, setContrasena] = useState('');
   const [usuario, setUsuario] = useState(null);
   const [showPassword, setShowPassword] = useState(false);
+
+  const [password, setPassword] = useState('');
+  const [isValidPassword, setIsValidPassword] = useState(true);
+  const [confirmarContrasena, setConfirmarContrasena] = useState('');
+  const [passwordsMatch, setPasswordsMatch] = useState(true);
+  const [name, setName] = useState('');
+  const [isValidNombre, setIsValidNombre] = useState(true);
+  const [lastName, setLastName] = useState('');
+  const [isValidApellidos, setIsValidApellidos] = useState(true);
+  const [email, setEmail] = useState('');
+  const [isValidEmail, setIsValidEmail] = useState(true);
+
+  const validateEmail = () => {
+    const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
+    const isValid = emailRegex.test(usuario.email);
+    setIsValidEmail(isValid);
+  };
+
+  const validateNombre = () => {
+    const nombreRegex = /^[a-zA-ZáéíóúÁÉÍÓÚüÜ\s']+$/;
+    const isValid = nombreRegex.test(usuario.name);
+    setIsValidNombre(isValid);
+  };
+
+  const validateApellidos = () => {
+    const apellidosRegex = /^[a-zA-ZáéíóúÁÉÍÓÚüÜ\s']+$/;
+    const isValid = apellidosRegex.test(usuario.lastName);
+    setIsValidApellidos(isValid);
+  };
+
+  const validatePassword = () => {
+    setIsValidPassword(password.length >= 6);
+  };
+
+
 
 
   const cargarDatosInicioSesion = async () => {
@@ -70,40 +102,41 @@ const EditarPerfil = (props) => {
             <TouchableOpacity onPress={() => navigation.navigate('Ajustes')}>
               <MaterialCommunityIcons name="cog" color='#000' size={28}  style={styles.Icono}/>
             </TouchableOpacity>
-        <View style={styles.content}>
+
+        <View style={styles.forms}>
         <TextInput
           style={styles.input}
           placeholder="Nombre"
-          value={usuario ? usuario.name : ''}
+          value={usuario ? usuario.name : '' }
           onChangeText={(text) => setUsuario({ ...usuario, name: text })}
-        />
+          onBlur={validateNombre}
+      />
+      {!isValidNombre && <Text style={{ color: 'red' }}>El nombre no debe contener números o caracteres especiales</Text>}
         <TextInput
           style={styles.input}
           placeholder="Email"
           value={usuario ? usuario.email : ''}
           onChangeText={(text) => setUsuario({ ...usuario, email: text })}
-        />
+          onBlur={validateEmail}
+          />
+          {!isValidEmail && <Text style={{ color: 'red' }}>Correo electrónico no válido</Text>}
         <TextInput
           style={styles.input}
           placeholder="Apellidos"
           value={usuario ? usuario.lastName : ''}
           onChangeText={(text) => setUsuario({ ...usuario, lastName: text })}
-        />
+          onBlur={validateApellidos}
+          />
+          {!isValidApellidos && <Text style={{ color: 'red' }}>Los apellidos no deben contener números o caracteres especiales</Text>}
         <TextInput
           style={styles.input}
           placeholder="Contraseña"
           secureTextEntry={!showPassword}
           value={usuario ? usuario.password : ''}
           onChangeText={(text) => setUsuario({ ...usuario, password: text })}
-        />
-        <TouchableOpacity onPress={() => setShowPassword(!showPassword)} style={styles.eyeIconContainer}>
-          {showPassword ? (
-            <MaterialCommunityIcons name="eye-off" size={24} color="black" />
-          ) : (
-            <FontAwesome name="eye" size={24} color="black" />
-          )}
-        </TouchableOpacity>
-        </View> 
+          onBlur={validatePassword}
+          />
+          </View>
 
         <View style={styles.container}>
           <TouchableOpacity onPress={() => navigation.navigate('Dirección',{ id: usuario._id })}>
@@ -111,6 +144,9 @@ const EditarPerfil = (props) => {
             <Text style={styles.text2}>▶</Text>
           </TouchableOpacity>
         </View>
+
+        
+        <View style={styles.ContainerBoton}>
         <TouchableOpacity >
             <View style={styles.buttonContainer}>
                 <Button
@@ -119,7 +155,16 @@ const EditarPerfil = (props) => {
                 onPress={actualizarDatosUsuario}
                 />
             </View>
-          </TouchableOpacity>     
+          </TouchableOpacity> 
+          </View>
+
+          <TouchableOpacity onPress={() => setShowPassword(!showPassword)} style={styles.eyeIconContainer}>
+          {showPassword ? (
+            <MaterialCommunityIcons name="eye-off" size={24} color="black" />
+          ) : (
+            <FontAwesome name="eye" size={24} color="black" />
+          )}
+        </TouchableOpacity>    
     </View>
   );
 };

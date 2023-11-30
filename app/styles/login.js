@@ -60,6 +60,18 @@ const styles = StyleSheet.create({
       height: 60,
       left: 10,
   },
+  eyeIconContainer:{
+    left:310,
+    bottom: 60
+  },
+  eyeIconContainer2:{
+    left:310,
+    bottom: 60
+  },
+  eyeIconContainer3:{
+    left:310,
+    bottom: 60
+  }
 });
 
 export {styles}

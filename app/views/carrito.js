@@ -63,17 +63,9 @@ const Carritos = () => {
       <View style={style.HeaderInicio}></View>
       <Image source={require('../img/logo.png')} style={style.LogoHeader} />
       <Text style={style.textInicio}>Carrito</Text>
-      <View style={styleCart.ContainerCompra}></View>
-      <View style={styleCart.ButtonComprar}>
-        <Button
-          title="Comprar"
-          color="#DC3545"
-          onPress={() => navigation.navigate('Confirmar compra',{ carrito, totalPrice })}
-        />
-      </View>
-      <Text style={styleCart.PrecioTotalCompra}>$MXN {totalPrice}</Text>
+     
 
-      
+      <View style={styleCart.ContainerInicio}>
         <View style={styleCart.ContainerProducto}>
         <FlatList
           data={carrito}
@@ -92,6 +84,20 @@ const Carritos = () => {
           onEndReached={() => calculateTotalPrice(carrito)}
         />
         </View>
+      </View>
+      <View style={styleCart.ContainerFin}>
+        <View style={styleCart.ContainerCompra}>
+        <Text style={styleCart.PrecioTotalCompra}>$MXN {totalPrice}</Text>
+          <View style={styleCart.ButtonComprar}>
+            <Button
+              title="Comprar"
+              color="#DC3545"
+              onPress={() => navigation.navigate('Confirmar compra',{ carrito, totalPrice })}
+            />
+          </View>
+          
+      </View>
+      </View>
     </View>
     
   );

@@ -5,7 +5,7 @@ const styles = StyleSheet.create({
 
     text:{
       left:20,
-      top:10,
+      top:'3%',
       fontSize:16,
       color:'black',
       padding: 5
@@ -15,25 +15,27 @@ const styles = StyleSheet.create({
         backgroundColor: 'white',
         justifyContent:'space-between',
         width: '100%',
-        height: 152,
+        height: 50,
         top: 0,
         marginTop:40,
         elevation:5,               
   },
  text2:{
      position: 'absolute',
-     left: 20,
-     top: 50,
-     color:'grey',
+     left:'80%',
+     top: '35%',
+     color:'black',
      fontSize:16,
  },
  container2:{
-        backgroundColor: 'white',
-        width: '100%',
-        height: 350,
-        top: 0,
-        marginTop:40,
-        elevation:5,               
+    backgroundColor: '#F8F9FA',
+    padding: 10,
+    position: 'absolute',
+    width: '100%',
+    height:'88%',
+    elevation: 2,
+    maxHeight: '70%',
+    marginTop:'25%'              
   },
   producto:{
      position: 'absolute',
@@ -83,14 +85,16 @@ const styles = StyleSheet.create({
      fontSize:16,
  },
  container3:{
-   flexDirection:"row",
-        backgroundColor: 'white',
-        justifyContent:'space-between',
-        width: '100%',
-        height:100,
-        top: 0,
-        marginTop:80,
-        elevation:30,              
+    flexDirection:"row",
+    backgroundColor: 'white',
+    justifyContent:'space-between',
+    width: '100%',
+    height:100,
+    top: '68%',
+    left:0,
+    right:0,
+    elevation:30,
+    position:'absolute'              
   },
   textFin1:{
      position:'absolute',
@@ -110,6 +114,15 @@ const styles = StyleSheet.create({
      width:'90%',
 
    },
+   ContainerInicio:{
+    position:'absolute',
+    width:'100%',
+    height:'100%'
+    },
+    ContainerFin:{
+        width:'100%',
+        height:'100%'
+    },
 
 });
 

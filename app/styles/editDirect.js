@@ -34,13 +34,11 @@ const styles = StyleSheet.create({
   },
   container3:{
     flexDirection:"row",
-    backgroundColor: 'white',
     justifyContent:'center',
     width: '100%',
     height:90,
     top: 0,
-    marginTop:180,
-    elevation:30,              
+    marginTop:'30%',              
    },
 });
   
