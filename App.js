@@ -66,7 +66,7 @@ function PerfilScreen() {
       <Stack.Screen name='Registro' component={Registro} options={{ headerShown: true }} />
       <Stack.Screen name='Cambio de moneda' component={Convertidor} />
       <Stack.Screen name='Aviso de privacidad' component={Aviso} />
-      <Stack.Screen name='myv' component={Mision} />
+      <Stack.Screen name='Mision y vision' component={Mision} />
       <Stack.Screen name='Dirección' component={Misdirecciones} />
       <Stack.Screen name='Editar dirección' component={EdtDiecction} />
       <Stack.Screen name='Agregar dirección' component={AddDiecction}/>

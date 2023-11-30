@@ -4,12 +4,15 @@ import {styles} from '../styles/login'
 import { useNavigation } from "@react-navigation/native";
 import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage'; 
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const Login = () =>  {
   const [email, setUsuario] = useState('');
   const [password, setContrasena] = useState('');
   const [isValidEmail, setIsValidEmail] = useState(true);
   const [isValidPassword, setIsValidPassword] = useState(true);
+  const [showPassword, setShowPassword] = useState(false);
   
 
   
@@ -83,12 +86,19 @@ const Login = () =>  {
           <TextInput
         style={styles.input}
         placeholder="Contraseña"
-        secureTextEntry={true}
+        secureTextEntry={!showPassword}
         value={password}
         onChangeText={(text) => setContrasena(text)}
         onBlur={validatePassword}
       />
       {!isValidPassword && <Text style={{ color: 'red' }}>Contraseña no válida</Text>}
+      <TouchableOpacity onPress={() => setShowPassword(!showPassword)} style={styles.eyeIconContainer}>
+          {showPassword ? (
+            <MaterialCommunityIcons name="eye-off" size={24} color="black" />
+          ) : (
+            <FontAwesome name="eye" size={24} color="black" />
+          )}
+        </TouchableOpacity>
           <TouchableOpacity >
             <View style={styles.buttonContainer}>
                 <Button

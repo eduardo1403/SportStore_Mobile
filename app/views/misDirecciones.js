@@ -65,7 +65,7 @@ const Misdirecciones = ({route}) => {
       <TouchableOpacity>
         <View style={styles.buttonContainer}>
               <Button
-              title="Agregar mas direcciones"
+              title="Agregar más direcciones"
               color="#DC3545"
               onPress={() => navigation.navigate('Agregar dirección')}
               />

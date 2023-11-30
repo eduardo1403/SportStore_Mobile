@@ -120,6 +120,7 @@ const validateIndicaciones = () => {
         onBlur={validateIndicaciones}
       />
       {!isValidIndicaciones && <Text style={{ color: 'red' }}>El campo no puede quedar vacío</Text>}
+        
         </View>
         <View style={styles.container3}>
         <View style={styles.buttonContainer}>

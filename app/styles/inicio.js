@@ -33,7 +33,7 @@ const style = StyleSheet.create({
         top: 835,
         fontFamily: 'Poppins-Regular',
         fontStyle: 'normal',
-        fontSize: 14,
+        fontSize: 10,
         lineHeight: 21,
         color:'#000000',
     },

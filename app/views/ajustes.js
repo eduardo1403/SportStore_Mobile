@@ -14,7 +14,7 @@ const Ajustes = () =>  {
           </TouchableOpacity>
         </View>
         <View style={styles.container3}>
-          <TouchableOpacity onPress={() => navigation.navigate('Misión y Visión')}>
+          <TouchableOpacity onPress={() => navigation.navigate('Mision y vision')}>
             <Text style={styles.text}>Misión y Visión</Text>
             <Text style={styles.text3}>▶</Text>
           </TouchableOpacity>

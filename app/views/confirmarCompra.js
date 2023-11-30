@@ -6,10 +6,26 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { FontAwesome } from '@expo/vector-icons'; 
 import Stripe from '@stripe/stripe-react-native';
 import { useStripe } from '@stripe/stripe-react-native';
+import axios from 'axios';
+import { isEmpty, isDefined } from 'react';
 
 const ConfirmarCompra = ({ route }) =>  {
   const navigation = useNavigation();
   const { carrito, totalPrice } = route.params;
+  const isFocused = useIsFocused();
+  const [usuario, setUsuario] = useState(null);
+
+  const cargarDatosInicioSesion = async () => {
+    try {
+      const usuarioGuardado = await AsyncStorage.getItem('usuario');
+      if (usuarioGuardado) {
+        const usuarioParseado = JSON.parse(usuarioGuardado);
+        setUsuario(usuarioParseado);
+      }
+    } catch (error) {
+      console.error('Error al cargar los datos de inicio de sesión:', error);
+    }
+  };
 
   const { initPaymentSheet, presentPaymentSheet } = useStripe();
     const [loading, setLoading] = useState(false);
@@ -18,7 +34,10 @@ const ConfirmarCompra = ({ route }) =>  {
 
     useEffect(() => {
       initializePaymentSheet();
-    }, []);
+      if (isFocused) {
+        cargarDatosInicioSesion();
+      }
+    }, [isFocused, usuario]);
   
 
     const fetchPaymentSheetParams = async () => {
@@ -73,6 +92,8 @@ const ConfirmarCompra = ({ route }) =>  {
         }
       };
 
+
+
   const renderItem = ({ item }) => (
     <View style={estilos.tarjeta}>
       <Image source={{ uri: item.image }} style={estilos.Foto} />
@@ -81,21 +102,32 @@ const ConfirmarCompra = ({ route }) =>  {
     </View>
   );
 
+
+  const handlePress = () => {
+    if (usuario) {
+      if (usuario._id) {
+        // Navigate to Dirección with the 'id'
+        navigation.navigate('Dirección', { id: usuario._id });
+      } else {
+        // Navigate to OtraVista
+        navigation.navigate('Sesion');
+      }
+    } else {
+      navigation.navigate('Sesion');
+    }
+  };
   
     return (
       <View>
-        <TouchableOpacity onPress={() => navigation.navigate('Dirección')}>
+        <TouchableOpacity onPress={handlePress}>
         <View style={styles.container}>
-          
           <Text style={styles.text}>Dirección de envio</Text>
-          <Text style={styles.text2}>Calle independencia 1 Departamentos{'\n'}amarillos en la    colonia Cantores {'\n'}
-Huejutla de reyes Hidalgo Mexico 43000</Text>
+          <Text style={styles.text2}>▶</Text>
         </View>
         </TouchableOpacity>
 
-
+        <View style={styles.ContainerInicio}>
         <View style={styles.container2}>
-        <Text style={styles.text}>Árticulo</Text>
 
         <FlatList
         data={carrito}
@@ -104,9 +136,10 @@ Huejutla de reyes Hidalgo Mexico 43000</Text>
         />
         
         </View>
+        </View>
 
 
-        
+        <View style={styles.ContainerFin}>
         <View style={styles.container3}>
         <Text style={styles.textFin1}>Total:</Text>
         <Text style={styles.textFin2}>$MXN {totalPrice}</Text>
@@ -118,6 +151,7 @@ Huejutla de reyes Hidalgo Mexico 43000</Text>
               onPress={openPaymentSheet}
               />
           </View>
+        </View>
         </View>
 
 
