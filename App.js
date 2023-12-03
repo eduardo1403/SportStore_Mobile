@@ -27,7 +27,7 @@ import CartContext from './app/views/CartContext';  // Asegúrate de importar el
 import Stripe from './app/views/stripe';
 import { StripeProvider } from '@stripe/stripe-react-native';
 import AddDiecction from './app/views/agregarDirección';
-
+import EncuestaSatisfaccion from './app/views/encuesta';
 
 const Stack = createNativeStackNavigator();
 
@@ -53,6 +53,7 @@ function CarritoScreen() {
       <Stack.Screen name='Dirección' component={Misdirecciones} />
       <Stack.Screen name='Editar dirección' component={EdtDiecction} />
       <Stack.Screen name='Realizar Pago' component={Stripe}/>
+      
     </Stack.Navigator>
   );
 }
@@ -70,6 +71,7 @@ function PerfilScreen() {
       <Stack.Screen name='Dirección' component={Misdirecciones} />
       <Stack.Screen name='Editar dirección' component={EdtDiecction} />
       <Stack.Screen name='Agregar dirección' component={AddDiecction}/>
+      <Stack.Screen name='Encuesta' component={EncuestaSatisfaccion}/>
     </Stack.Navigator>
   );
 }
