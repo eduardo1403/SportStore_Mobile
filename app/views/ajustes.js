@@ -7,12 +7,7 @@ const Ajustes = () =>  {
   const navigation = useNavigation();
     return (
       <View>
-        <View style={styles.container}>
-          <TouchableOpacity onPress={() => navigation.navigate('Encuesta')}>
-            <Text style={styles.text}>Encuesta</Text>
-            <Text style={styles.text3}>▶</Text>
-          </TouchableOpacity>
-        </View>
+        
         <View style={styles.container2}>
           <TouchableOpacity onPress={() => navigation.navigate('Aviso de privacidad')}>
             <Text style={styles.text}>Aviso de privacidad</Text>

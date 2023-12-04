@@ -53,7 +53,7 @@ function CarritoScreen() {
       <Stack.Screen name='Dirección' component={Misdirecciones} />
       <Stack.Screen name='Editar dirección' component={EdtDiecction} />
       <Stack.Screen name='Realizar Pago' component={Stripe}/>
-      
+      <Stack.Screen name='Encuesta' component={EncuestaSatisfaccion}/>
     </Stack.Navigator>
   );
 }
@@ -71,7 +71,7 @@ function PerfilScreen() {
       <Stack.Screen name='Dirección' component={Misdirecciones} />
       <Stack.Screen name='Editar dirección' component={EdtDiecction} />
       <Stack.Screen name='Agregar dirección' component={AddDiecction}/>
-      <Stack.Screen name='Encuesta' component={EncuestaSatisfaccion}/>
+      
     </Stack.Navigator>
   );
 }

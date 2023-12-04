@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
-import { View, Text,Image, Button, TouchableOpacity, StyleSheet, FlatList} from "react-native";
+import { View, Text,Image, Button, TouchableOpacity, StyleSheet, FlatList, Alert} from "react-native";
 import {styles} from '../styles/confirmarCompra';
 import { useNavigation, useIsFocused } from "@react-navigation/native";
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -86,10 +86,17 @@ const ConfirmarCompra = ({ route }) =>  {
         const { error } = await presentPaymentSheet();
 
         if (error) {
-        Alert.alert(`Error code: ${error.code}`, error.message);
+          Alert.alert(`Error code: ${error.code}`, error.message);
         } else {
-        Alert.alert('Success', 'Your order is confirmed!');
+          Alert.alert('Success', 'Your order is confirmed!');
         }
+      };
+
+      const handleButtonPress = () => {
+        setTimeout(() => {
+          // Realizar la navegación a la otra vista
+          navigation.navigate('Encuesta');
+        }, 1000);
       };
 
 
@@ -148,7 +155,10 @@ const ConfirmarCompra = ({ route }) =>  {
               title="Confirmar Compra"
               color="#DC3545"
               disabled={!loading}
-              onPress={openPaymentSheet}
+              onPress={() => {
+                openPaymentSheet();
+                handleButtonPress();
+              }}
               />
           </View>
         </View>
