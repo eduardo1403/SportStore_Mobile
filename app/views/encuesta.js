@@ -1,35 +1,54 @@
 import React, { useState } from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
+import { View, Text, TouchableOpacity, Alert, Button} from 'react-native';
 import { styles } from '../styles/encuesta';
-import { getFirestore, collection, add, serverTimestamp } from '@firebase/firestore';
-import db from './firebaseConfig';
+import {useNavigation} from '@react-navigation/native';
+import appFirebase from './firebaseConfig';
+import { getFirestore, collection,addDoc, getDocs, doc, deleteDoc, getDoc, setDoc } from 'firebase/firestore';
+
+const db = getFirestore(appFirebase)
 
 const EncuestaSatisfaccion = () => {
-  const [calificacion, setCalificacion] = useState(null);
+  const navigation = useNavigation();
+  const [calificacion, setCalificacion] = useState({
+    calificacion: null,
+  });
 
   const handleSeleccion = (satisfaccion) => {
-    setCalificacion(satisfaccion);
+    setCalificacion({
+      calificacion: satisfaccion,
+    });
   };
 
-  const enviarEncuesta = async () => {
+  
+
+  const onSend = async () => {
     try {
-      const encuestaData = {
-        calificacion,
-        timestamp: serverTimestamp(),
-      };
-
-      // Asegúrate de tener la referencia correcta a tu colección 'Encuesta'
-      const encuestaRef = collection(db, 'Encuesta');
-
-      // Agrega la nueva encuesta a la colección
-      await add(encuestaRef, encuestaData);
-
-      // Puedes hacer algo adicional después de enviar la encuesta, como mostrar un mensaje de éxito
-      alert('Encuesta enviada exitosamente');
+      const docRef = await addDoc(collection(database, 'quizzes'), {
+        satisfaccion: calificacion.calificacion,
+        timestamp: new Date(),
+        // Otros campos si es necesario
+      });
     } catch (error) {
-      alert('Error al enviar la encuesta', error);
+      console.error('Error al enviar a Firestore:', error);
+    
+      // Puedes mostrar una alerta o realizar alguna acción específica en caso de error.
     }
   };
+
+  const  saveResult = async()=>{
+    try{
+      const docRef = await addDoc(collection(db, "quiz"), {
+        calificacion
+      });
+      alert("Gracias! por su respuesta ", docRef.id);
+      navigation.navigate('Home');
+    }
+    catch{
+      alert("Error")
+    }
+  }
+
+  console.log(calificacion)
 
   const renderOpciones = () => {
     const opciones = ['Satisfecho', 'Neutral', 'Insatisfecho'];
@@ -37,7 +56,7 @@ const EncuestaSatisfaccion = () => {
     return opciones.map((opcion, index) => (
       <TouchableOpacity
         key={index}
-        style={[styles.opcion, calificacion === opcion && styles.opcionSeleccionada]}
+        style={[styles.opcion, calificacion.calificacion === opcion && styles.opcionSeleccionada]}
         onPress={() => handleSeleccion(opcion)}
       >
         <Text>{opcion}</Text>
@@ -52,13 +71,16 @@ const EncuestaSatisfaccion = () => {
 
       <View style={styles.opcionesContenedor}>{renderOpciones()}</View>
 
-      <TouchableOpacity
-        style={styles.botonEnviar}
-        disabled={!calificacion}
-        onPress={enviarEncuesta}
-      >
-        <Text style={styles.textoBoton}>Enviar</Text>
-      </TouchableOpacity>
+      
+
+      <View>
+        <Button
+          onPress={saveResult}
+          disabled={!calificacion.calificacion}
+          title='Enviar'/>
+      </View>
+
+      
     </View>
   );
 };
